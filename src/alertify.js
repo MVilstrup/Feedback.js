@@ -102,12 +102,6 @@
 			buttonReverse : false,
 
 			/**
-			 * Which button should be focused by default
-			 * @type {String}	"ok", "cancel", or "none" (default)
-			 */
-			buttonFocus : "none",
-
-			/**
 			 * Set the transition event on load
 			 * @type {[type]}
 			 */
@@ -321,7 +315,7 @@
 				html += "<div class=\"alertify-dialog\">";
 				html += "<a id=\"alertify-resetFocusBack\" class=\"alertify-resetFocus\" href=\"#\">Reset Focus</a>";
 
-				if (_alertify.buttonFocus === "none") html += "<a href=\"#\" id=\"alertify-noneFocus\" class=\"alertify-hidden\"></a>";
+				html += "<a href=\"#\" id=\"alertify-noneFocus\" class=\"alertify-hidden\"></a>";
 
 				// doens't require an actual form
 				if (type === "prompt") html += "<div id=\"alertify-form\">";
@@ -656,11 +650,6 @@
 				btnPos     	= $("alertify-pos")     || undefined;
 				btnNeutral  = $("alertify-neutral") || undefined;
 				btnNeg     	= $("alertify-neg")     || undefined;
-				btnFocus;
-
-				if(!btnPos && !btnNeutral && !btnNeg){
-					btnFocus  = (_alertify.buttonFocus === "cancel") ? btnCancel : ((_alertify.buttonFocus === "none") ? $("alertify-noneFocus") : btnOK);
-				}
 				
 				
 

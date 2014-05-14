@@ -30,9 +30,6 @@
 	<a href="#" id="delay">Hide in 10 seconds</a><br>
 	<a href="#" id="forever">Persistent Log</a>
 
-	<h2>Themes</h2>
-	<a href="#" id="bootstrap">Bootstrap Theme</a>
-
 	<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
 	<script src="../src/alertify.js"></script>
 	<script>
@@ -207,21 +204,6 @@
 			reset();
 			alertify.custom = alertify.extend("custom");
 			alertify.custom("I'm a custom log message");
-			return false;
-		});
-
-		// ==============================
-		// Custom Themes
-		$("#bootstrap").on( 'click', function () {
-			reset();
-			$("#toggleCSS").attr("href", "../themes/alertify.bootstrap.css");
-			alertify.prompt("Prompt dialog with bootstrap theme", function (e) {
-				if (e) {
-					alertify.success("You've clicked OK");
-				} else {
-					alertify.error("You've clicked Cancel");
-				}
-			}, "Default Value");
 			return false;
 		});
 	</script>
