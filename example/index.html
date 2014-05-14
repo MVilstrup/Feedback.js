@@ -3,8 +3,8 @@
 <head>
 	<meta charset="utf-8">
 	<title>alertify.js - example page</title>
-	<link rel="stylesheet" href="../themes/alertify.core.css" />
-	<link rel="stylesheet" href="../themes/alertify.default.css" id="toggleCSS" />
+	<link rel="stylesheet" href="../themes/feedback.core.css" />
+	<link rel="stylesheet" href="../themes/feedback.default.css" id="toggleCSS" />
 	<meta name="viewport" content="width=device-width">
 	<style>
 		.alertify-log-custom {
@@ -31,10 +31,10 @@
 	<a href="#" id="forever">Persistent Log</a>
 
 	<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
-	<script src="../src/alertify.js"></script>
+	<script src="../src/feedback.js"></script>
 	<script>
 		function reset () {
-			$("#toggleCSS").attr("href", "../themes/alertify.default.css");
+			$("#toggleCSS").attr("href", "../themes/feedback.default.css");
 			alertify.set({
 				labels : {
 					ok     : "OK",
