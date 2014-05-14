@@ -3,11 +3,11 @@
 	"use strict";
 
 	var document = global.document,
-	    Alertify;
+	    Feedback;
 
-	Alertify = function () {
+	Feedback = function () {
 
-		var _alertify = {},
+		var _feedback = {},
 		    dialogs   = {},
 		    isopen    = false,
 		    keys      = { ENTER: 13, ESC: 27, SPACE: 32 },
@@ -20,18 +20,18 @@
 		 */
 		dialogs = {
 			buttons : {
-				holder 	 : "<nav class=\"alertify-buttons\">{{buttons}}</nav>",
-				submit 	 : "<button type=\"submit\" class=\"alertify-button alertify-button-ok\" id=\"alertify-ok\">{{ok}}</button>",
-				ok     	 : "<button class=\"alertify-button alertify-button-ok\" id=\"alertify-ok\">{{ok}}</button>",
-				cancel 	 : "<button class=\"alertify-button alertify-button-cancel\" id=\"alertify-cancel\">{{cancel}}</button>",
-				positive : "<button class=\"alertify-button alertify-image-button alertify-button-pos\" id=\"alertify-pos\"></button>",
-				neutral  : "<button class=\"alertify-button alertify-image-button alertify-button-neutral\" id=\"alertify-neutral\"></button>",
-				negative : "<button class=\"alertify-button alertify-image-button alertify-button-neg\" id=\"alertify-neg\"></button>",
+				holder 	 : "<nav class=\"feedback-buttons\">{{buttons}}</nav>",
+				submit 	 : "<button type=\"submit\" class=\"feedback-button feedback-button-ok\" id=\"feedback-ok\">{{ok}}</button>",
+				ok     	 : "<button class=\"feedback-button feedback-button-ok\" id=\"feedback-ok\">{{ok}}</button>",
+				cancel 	 : "<button class=\"feedback-button feedback-button-cancel\" id=\"feedback-cancel\">{{cancel}}</button>",
+				positive : "<button class=\"feedback-button feedback-image-button feedback-button-pos\" id=\"feedback-pos\"></button>",
+				neutral  : "<button class=\"feedback-button feedback-image-button feedback-button-neutral\" id=\"feedback-neutral\"></button>",
+				negative : "<button class=\"feedback-button feedback-image-button feedback-button-neg\" id=\"feedback-neg\"></button>",
 
 			},
-			input   : "<div class=\"alertify-text-wrapper\"><input type=\"text\" class=\"alertify-text\" id=\"alertify-text\"></div>",
-			message : "<p class=\"alertify-message\">{{message}}</p>",
-			log     : "<article class=\"alertify-log{{class}}\">{{message}}</article>"
+			input   : "<div class=\"feedback-text-wrapper\"><input type=\"text\" class=\"feedback-text\" id=\"feedback-text\"></div>",
+			message : "<p class=\"feedback-message\">{{message}}</p>",
+			log     : "<article class=\"feedback-log{{class}}\">{{message}}</article>"
 		};
 
 		/**
@@ -75,10 +75,10 @@
 		};
 
 		/**
-		 * Alertify private object
+		 * Feedback private object
 		 * @type {Object}
 		 */
-		_alertify = {
+		_feedback = {
 
 			/**
 			 * Labels object
@@ -267,7 +267,7 @@
 			},
 
 			/**
-			 * Use alertify as the global error handler (using window.onerror)
+			 * Use feedback as the global error handler (using window.onerror)
 			 *
 			 * @return {boolean} success
 			 */
@@ -312,15 +312,15 @@
 				    message = item.message,
 				    css     = item.cssClass || "";
 
-				html += "<div class=\"alertify-dialog\">";
-				html += "<a id=\"alertify-resetFocusBack\" class=\"alertify-resetFocus\" href=\"#\">Reset Focus</a>";
+				html += "<div class=\"feedback-dialog\">";
+				html += "<a id=\"feedback-resetFocusBack\" class=\"feedback-resetFocus\" href=\"#\">Reset Focus</a>";
 
-				html += "<a href=\"#\" id=\"alertify-noneFocus\" class=\"alertify-hidden\"></a>";
+				html += "<a href=\"#\" id=\"feedback-noneFocus\" class=\"feedback-hidden\"></a>";
 
 				// doens't require an actual form
-				if (type === "prompt") html += "<div id=\"alertify-form\">";
+				if (type === "prompt") html += "<div id=\"feedback-form\">";
 
-				html += "<article class=\"alertify-inner\">";
+				html += "<article class=\"feedback-inner\">";
 				html += dialogs.message.replace("{{message}}", message);
 
 				if (type === "prompt") html += dialogs.input;
@@ -330,7 +330,7 @@
 
 				if (type === "prompt") html += "</div>";
 
-				html += "<a id=\"alertify-resetFocus\" class=\"alertify-resetFocus\" href=\"#\">Reset Focus</a>";
+				html += "<a id=\"feedback-resetFocus\" class=\"feedback-resetFocus\" href=\"#\">Reset Focus</a>";
 				html += "</div>";
 
 				switch (type) {
@@ -353,8 +353,8 @@
 					break;
 				}
 
-				elDialog.className = "alertify alertify-" + type + " " + css;
-				elCover.className  = "alertify-cover";
+				elDialog.className = "feedback feedback-" + type + " " + css;
+				elCover.className  = "feedback-cover";
 				return html;
 			},
 
@@ -384,7 +384,7 @@
 					self.unbind(this, self.transition.type, transitionDone);
 					// remove log message
 					elLog.removeChild(this);
-					if (!elLog.hasChildNodes()) elLog.className += " alertify-logs-hidden";
+					if (!elLog.hasChildNodes()) elLog.className += " feedback-logs-hidden";
 				};
 				// this sets the hide class to transition out
 				// or removes the child if css transitions aren't supported
@@ -394,10 +394,10 @@
 						// whether CSS transition exists
 						if (self.transition.supported) {
 							self.bind(el, self.transition.type, transitionDone);
-							el.className += " alertify-log-hide";
+							el.className += " feedback-log-hide";
 						} else {
 							elLog.removeChild(el);
-							if (!elLog.hasChildNodes()) elLog.className += " alertify-logs-hidden";
+							if (!elLog.hasChildNodes()) elLog.className += " feedback-logs-hidden";
 						}
 					}
 				};
@@ -424,7 +424,7 @@
 				// after the dialog box is closed
 				elCallee = document.activeElement;
 
-				// check to ensure the alertify dialog element
+				// check to ensure the feedback dialog element
 				// has been successfully created
 				var check = function () {
 					if ((elLog && elLog.scrollTop !== null) && (elCover && elCover.scrollTop !== null)) return;
@@ -435,7 +435,7 @@
 				if (typeof type !== "string") throw new Error("type must be a string");
 				if (typeof fn !== "undefined" && typeof fn !== "function") throw new Error("fn must be a function");
 				
-				// initialize alertify if it hasn't already been done
+				// initialize feedback if it hasn't already been done
 				this.init();
 				check();
 
@@ -484,11 +484,11 @@
 					// whether CSS transition exists
 					if (this.transition.supported) {
 						this.bind(elDialog, this.transition.type, transitionDone);
-						elDialog.className = "alertify alertify-hide alertify-hidden";
+						elDialog.className = "feedback feedback-hide feedback-hidden";
 					} else {
-						elDialog.className = "alertify alertify-hide alertify-hidden alertify-isHidden";
+						elDialog.className = "feedback feedback-hide feedback-hidden feedback-isHidden";
 					}
-					elCover.className  = "alertify-cover alertify-cover-hidden";
+					elCover.className  = "feedback-cover feedback-cover-hidden";
 					// set focus to the last element or body
 					// after the dialog is closed
 					elCallee.focus();
@@ -496,7 +496,7 @@
 			},
 
 			/**
-			 * Initialize Alertify
+			 * Initialize Feedback
 			 * Create the 2 main elements
 			 *
 			 * @return {undefined}
@@ -507,10 +507,10 @@
 				document.createElement("article");
 				document.createElement("section");
 				// cover
-				if ($("alertify-cover") == null) {
+				if ($("feedback-cover") == null) {
 					elCover = document.createElement("div");
-					elCover.setAttribute("id", "alertify-cover");
-					elCover.className = "alertify-cover alertify-cover-hidden";
+					elCover.setAttribute("id", "feedback-cover");
+					elCover.className = "feedback-cover feedback-cover-hidden";
 					document.body.appendChild(elCover);
 				}
 				// main element
@@ -519,14 +519,14 @@
 					queue = [];
 					elDialog = document.createElement("section");
 					elDialog.setAttribute("id", "alertify");
-					elDialog.className = "alertify alertify-hidden";
+					elDialog.className = "feedback feedback-hidden";
 					document.body.appendChild(elDialog);
 				}
 				// log element
-				if ($("alertify-logs") == null) {
+				if ($("feedback-logs") == null) {
 					elLog = document.createElement("section");
-					elLog.setAttribute("id", "alertify-logs");
-					elLog.className = "alertify-logs alertify-logs-hidden";
+					elLog.setAttribute("id", "feedback-logs");
+					elLog.className = "feedback-logs feedback-logs-hidden";
 					document.body.appendChild(elLog);
 				}
 				// set tabindex attribute on body element
@@ -547,24 +547,24 @@
 			 * @return {Object}
 			 */
 			log : function (message, type, wait) {
-				// check to ensure the alertify dialog element
+				// check to ensure the feedback dialog element
 				// has been successfully created
 				var check = function () {
 					if (elLog && elLog.scrollTop !== null) return;
 					else check();
 				};
-				// initialize alertify if it hasn't already been done
+				// initialize feedback if it hasn't already been done
 				this.init();
 				check();
 
-				elLog.className = "alertify-logs";
+				elLog.className = "feedback-logs";
 				this.notify(message, type, wait);
 				return this;
 			},
 
 			/**
 			 * Add new log message
-			 * If a type is passed, a class name "alertify-log-{type}" will get added.
+			 * If a type is passed, a class name "feedback-log-{type}" will get added.
 			 * This allows for custom look and feel for various types of notifications.
 			 *
 			 * @param  {String} message    The message passed from the callee
@@ -575,12 +575,12 @@
 			 */
 			notify : function (message, type, wait) {
 				var log = document.createElement("article");
-				log.className = "alertify-log" + ((typeof type === "string" && type !== "") ? " alertify-log-" + type : "");
+				log.className = "feedback-log" + ((typeof type === "string" && type !== "") ? " feedback-log-" + type : "");
 				log.innerHTML = message;
 				// append child
 				elLog.appendChild(log);
 				// triggers the CSS animation
-				setTimeout(function() { log.className = log.className + " alertify-log-show"; }, 50);
+				setTimeout(function() { log.className = log.className + " feedback-log-show"; }, 50);
 				this.close(log, wait);
 			},
 
@@ -642,19 +642,19 @@
 				// build the proper dialog HTML
 				elDialog.innerHTML = this.build(item);
 				// assign all the common elements
-				btnReset  = $("alertify-resetFocus");
-				btnResetBack  = $("alertify-resetFocusBack");
-				btnOK     = $("alertify-ok")     || undefined;
-				btnCancel = $("alertify-cancel") || undefined;
+				btnReset  = $("feedback-resetFocus");
+				btnResetBack  = $("feedback-resetFocusBack");
+				btnOK     = $("feedback-ok")     || undefined;
+				btnCancel = $("feedback-cancel") || undefined;
 
-				btnPos     	= $("alertify-pos")     || undefined;
-				btnNeutral  = $("alertify-neutral") || undefined;
-				btnNeg     	= $("alertify-neg")     || undefined;
+				btnPos     	= $("feedback-pos")     || undefined;
+				btnNeutral  = $("feedback-neutral") || undefined;
+				btnNeg     	= $("feedback-neg")     || undefined;
 				
 				
 
-				input     = $("alertify-text")   || undefined;
-				form      = $("alertify-form")   || undefined;
+				input     = $("feedback-text")   || undefined;
+				form      = $("feedback-form")   || undefined;
 				// add placeholder value to the input field
 				if (typeof item.placeholder === "string" && item.placeholder !== "") input.value = item.placeholder;
 				if (fromQueue) this.setFocus();
@@ -680,26 +680,26 @@
 		};
 
 		return {
-			alert    : function (message, fn, cssClass) { _alertify.dialog(message, "alert", fn, "", cssClass); return this; },
-			confirm  : function (message, fn, cssClass) { _alertify.dialog(message, "confirm", fn, "", cssClass); return this; },
-			feedback : function (message, fn, cssClass) { _alertify.dialog(message, "feedback", fn, "", cssClass); return this; },
-			extend   : _alertify.extend,
-			init     : _alertify.init,
-			log      : function (message, type, wait) { _alertify.log(message, type, wait); return this; },
-			prompt   : function (message, fn, placeholder, cssClass) { _alertify.dialog(message, "prompt", fn, placeholder, cssClass); return this; },
-			success  : function (message, wait) { _alertify.log(message, "success", wait); return this; },
-			error    : function (message, wait) { _alertify.log(message, "error", wait); return this; },
-			set      : function (args) { _alertify.set(args); },
-			labels   : _alertify.labels,
-			debug    : _alertify.handleErrors
+			alert    : function (message, fn, cssClass) { _feedback.dialog(message, "alert", fn, "", cssClass); return this; },
+			confirm  : function (message, fn, cssClass) { _feedback.dialog(message, "confirm", fn, "", cssClass); return this; },
+			feedback : function (message, fn, cssClass) { _feedback.dialog(message, "feedback", fn, "", cssClass); return this; },
+			extend   : _feedback.extend,
+			init     : _feedback.init,
+			log      : function (message, type, wait) { _feedback.log(message, type, wait); return this; },
+			prompt   : function (message, fn, placeholder, cssClass) { _feedback.dialog(message, "prompt", fn, placeholder, cssClass); return this; },
+			success  : function (message, wait) { _feedback.log(message, "success", wait); return this; },
+			error    : function (message, wait) { _feedback.log(message, "error", wait); return this; },
+			set      : function (args) { _feedback.set(args); },
+			labels   : _feedback.labels,
+			debug    : _feedback.handleErrors
 		};
 	};
 
 	// AMD and window support
 	if (typeof define === "function") {
-		define([], function () { return new Alertify(); });
+		define([], function () { return new Feedback(); });
 	} else if (typeof global.alertify === "undefined") {
-		global.alertify = new Alertify();
+		global.alertify = new Feedback();
 	}
 
 }(this));
