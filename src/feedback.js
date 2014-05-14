@@ -29,7 +29,7 @@
 				negative : "<button class=\"feedback-button feedback-image-button feedback-button-neg\" id=\"feedback-neg\"></button>",
 
 			},
-			input   : "<div class=\"feedback-text-wrapper\"><input type=\"text\" class=\"feedback-text\" id=\"feedback-text\"></div>",
+			input   : "<div class=\"feedback-text-wrapper\"><textarea class=\"feedback-text\" rows='5' id=\"feedback-text\"></textarea>",
 			message : "<p class=\"feedback-message\">{{message}}</p>",
 			log     : "<article class=\"feedback-log{{class}}\">{{message}}</article>"
 		};
@@ -687,6 +687,7 @@
 			init     : _feedback.init,
 			log      : function (message, type, wait) { _feedback.log(message, type, wait); return this; },
 			prompt   : function (message, fn, placeholder, cssClass) { _feedback.dialog(message, "prompt", fn, placeholder, cssClass); return this; },
+			neutral  : function (message, type, wait) { _feedback.log(message, "neutral", wait); return this; },
 			success  : function (message, wait) { _feedback.log(message, "success", wait); return this; },
 			error    : function (message, wait) { _feedback.log(message, "error", wait); return this; },
 			set      : function (args) { _feedback.set(args); },

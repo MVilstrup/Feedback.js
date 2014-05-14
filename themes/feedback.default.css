@@ -7,8 +7,8 @@
 }
 .feedback {
 	background: #FFF;
-	border: 10px solid #333; /* browsers that don't support rgba */
-	border: 10px solid rgba(0,0,0,.7);
+	border: 5px solid #333; /* browsers that don't support rgba */
+	border: 5px solid rgba(0,0,0,.7);
 	border-radius: 8px;
 	box-shadow: 0 3px 3px rgba(0,0,0,.3);
 	/*-webkit-background-clip: padding;     
@@ -17,8 +17,8 @@
 }
 .feedback-text {
 	border: 1px solid #CCC;
-	padding: 10px;
 	border-radius: 4px;
+	max-width: 450px;
 }
 .feedback-button {
 	border-radius: 4px;
@@ -57,16 +57,21 @@
 }
 
 .feedback-log {
-	background: #F3A02B;
+	background: #333;
 	padding: 15px;
 	border-radius: 4px;
 	color: #FFF;
 	text-shadow: -1px -1px 0 rgba(0,0,0,.5);
 }
+
+.feedback-log-neutral {
+	background: #F3A02B;
+}
+
 .feedback-log-error {
 	background: #E6343B;
-
 }
+
 .feedback-log-success {
 	background: #2FAD6A;
 

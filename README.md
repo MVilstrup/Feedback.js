@@ -13,7 +13,6 @@ Feedback.js has just seen the light of day, and are currently in version 0.1.
 
 It is build on top of the amazing work done by Alertify version 0.3. 
 http://fabien-d.github.com/alertify.js/
-<fabien.doiron@gmail.com>, [@fabien_doiron](http://twitter.com/fabien_doiron)
 
 Without this amazing work, feedback.js would never have been able to come into existence. 
 

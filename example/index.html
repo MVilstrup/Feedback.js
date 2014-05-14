@@ -7,7 +7,7 @@
 	<link rel="stylesheet" href="../themes/feedback.default.css" id="toggleCSS" />
 	<meta name="viewport" content="width=device-width">
 	<style>
-		.alertify-log-custom {
+		.feedback-log-custom {
 			background: blue;
 		}
 	</style>
@@ -24,8 +24,9 @@
 
 	<h2>Logs</h2>
 	<a href="#" id="notification">Standard Log</a><br>
-	<a href="#" id="success">Success Log</a><br>
-	<a href="#" id="error">Error Log</a><br>
+	<a href="#" id="success">Positive Log</a><br>
+	<a href="#" id="neutral">Neutral Log</a><br>
+	<a href="#" id="error">Negative Log</a><br>
 	<a href="#" id="custom">Custom Log</a><br>
 	<a href="#" id="delay">Hide in 10 seconds</a><br>
 	<a href="#" id="forever">Persistent Log</a>
@@ -89,7 +90,7 @@
 					alertify.prompt("What could be improved?")
 					alertify.alert("Thank you for your feedback! <br> We will try to improve!");
 				} else if(opinion == 0 ){
-					alertify.prompt("What about it doesn't you like?")
+					alertify.prompt("What is it about the website that you don't like? <br>")
 					alertify.alert("Thank you for your feedback! <br> Your opinion will be taken into account");
 				}
 			}, "Default Value");
@@ -105,7 +106,7 @@
 				} else if(opinion < 0 ){
 					alertify.error("Thank you for your feedback! <br> We will try to improve!");
 				} else if(opinion == 0 ){
-					alertify.log("Thank you for your feedback! <br> Your opinion will be taken into account");
+					alertify.neutral("Thank you for your feedback! <br> Your opinion will be taken into account");
 				}
 			}, "Default Value");
 			return false;
@@ -135,6 +136,11 @@
 		$("#success").on( 'click', function () {
 			reset();
 			alertify.success("Success log message");
+			return false;
+		});
+		$("#neutral").on( 'click', function () {
+			reset();
+			alertify.neutral("Neutral log message");
 			return false;
 		});
 
