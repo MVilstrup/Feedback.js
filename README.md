@@ -11,7 +11,11 @@ I'm are hoping feedback.js will be able to improve websites and user experience 
 
 Feedback.js has just seen the light of day, and are currently in version 0.1. 
 
-Currently it is being developed as a proof of concept, it is not yet ready for production use.
+It is build on top of the amazing work done by Alertify version 0.3. 
+http://fabien-d.github.com/alertify.js/
+<fabien.doiron@gmail.com>, [@fabien_doiron](http://twitter.com/fabien_doiron)
+
+Without this amazing work, feedback.js would never have been able to come into existence. 
 
 ## Features
 
@@ -30,13 +34,6 @@ Do you feel like helping out making this project even better, feel free to get i
 
 However, since this is my first Open Source project I don't really know how Open source cooperation works, so you might have to explain it to me :p
 
-##Foundation
-
-It is build on top of the amazing work done by Alertify version 0.3. 
-http://fabien-d.github.com/alertify.js/
-<fabien.doiron@gmail.com>, [@fabien_doiron](http://twitter.com/fabien_doiron)
-
-Without this amazing work, feedback.js would never have been able to come into existence. 
 
 ## License
 
