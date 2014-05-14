@@ -1,6 +1,16 @@
-[![build status](https://secure.travis-ci.org/fabien-d/alertify.js.png)](http://travis-ci.org/fabien-d/alertify.js)
+Feedback.js
+===========
 
-Alertify is an unobtrusive customizable JavaScript notification system.
+Feedback.js is a unobtrusive customizable JavaScript notification system, meant to make it simple for all to get qualitative feedback from their users all over their website. 
+
+Qualitative feedback is important, because it allows the company to quickly figure out where to focus their limited resources, and track their users experience in real time as their update parts of their sites. 
+
+I'm are hoping feedback.js will be able to improve websites and user experience all over the world. 
+
+## Version
+
+Feedback.js has just seen the light of day, and are currently in version 0.1. 
+
 
 ## Features
 
@@ -8,22 +18,6 @@ Alertify is an unobtrusive customizable JavaScript notification system.
 * Fully customizable unobtrusive notification system
 * Callback parameter handling both OK and Cancel button clicks
 * Chaining which allows queued dialogs
-
-## Examples
-
-http://fabien-d.github.com/alertify.js/
-
-## Usage
-
-See wiki [How to Use](http://github.com/fabien-d/alertify.js/wiki/How-to-Use)
-
-## Changeset
-
-See wiki [Changeset](http://github.com/fabien-d/alertify.js/wiki/Changeset)
-
-## Contributing
-
-See wiki [Submitting a Pull Request](https://github.com/fabien-d/alertify.js/wiki/Submitting-a-Pull-Request)
 
 ## Where is it being tested?
 
@@ -35,11 +29,24 @@ See wiki [Submitting a Pull Request](https://github.com/fabien-d/alertify.js/wik
 * iOS
 * Android
 
+##Foundation
+
+It is build on top of the amazing work done by Alertify version 0.3. 
+http://fabien-d.github.com/alertify.js/
+<fabien.doiron@gmail.com>, [@fabien_doiron](http://twitter.com/fabien_doiron)
+
+Without this amazing work, feedback.js would never have been able to come into existence. 
+
 ## License
 
-Alertify is licensed under MIT http://www.opensource.org/licenses/MIT
+Feedback.js is just a small dwarf standing on the shoulders on giants, and would never dream of charging for the use of its features.
+
+Whether your are a big enterprise or a small blog, feel free to get started and improve your users experience today.
+
+Feedback.js is licensed under MIT http://www.opensource.org/licenses/MIT
 
 ### Copyright
 
-Copyright (c) 2012, Fabien Doiron  
-<fabien.doiron@gmail.com>, [@fabien_doiron](http://twitter.com/fabien_doiron)
+Copyright (c) 2014, Mikkel Vilstrup
+<Mikkel@Vilstrup.dk>, [@Mvilstrup] (http://twitter.com/mvilstrup)
+
