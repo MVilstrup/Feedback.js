@@ -24,9 +24,9 @@
 				submit 	 : "<button type=\"submit\" class=\"alertify-button alertify-button-ok\" id=\"alertify-ok\">{{ok}}</button>",
 				ok     	 : "<button class=\"alertify-button alertify-button-ok\" id=\"alertify-ok\">{{ok}}</button>",
 				cancel 	 : "<button class=\"alertify-button alertify-button-cancel\" id=\"alertify-cancel\">{{cancel}}</button>",
-				positive : "<button class=\"alertify-button alertify-button-pos\" id=\"alertify-pos\"></button>",
-				neutral  : "<button class=\"alertify-button alertify-button-neutral\" id=\"alertify-neutral\"></button>",
-				negative : "<button class=\"alertify-button alertify-button-neg\" id=\"alertify-neg\"></button>",
+				positive : "<button class=\"alertify-button alertify-image-button alertify-button-pos\" id=\"alertify-pos\"></button>",
+				neutral  : "<button class=\"alertify-button alertify-image-button alertify-button-neutral\" id=\"alertify-neutral\"></button>",
+				negative : "<button class=\"alertify-button alertify-image-button alertify-button-neg\" id=\"alertify-neg\"></button>",
 
 			},
 			input   : "<div class=\"alertify-text-wrapper\"><input type=\"text\" class=\"alertify-text\" id=\"alertify-text\"></div>",

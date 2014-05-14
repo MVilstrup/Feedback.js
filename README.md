@@ -11,6 +11,7 @@ I'm are hoping feedback.js will be able to improve websites and user experience 
 
 Feedback.js has just seen the light of day, and are currently in version 0.1. 
 
+Currently it is being developed as a proof of concept, it is not yet ready for production use.
 
 ## Features
 
@@ -21,13 +22,13 @@ Feedback.js has just seen the light of day, and are currently in version 0.1.
 
 ## Where is it being tested?
 
-* Microsoft Internet Explorer 7+ (Standards Mode)
-* Google Chrome
-* Mozilla FireFox
-* Apple Safari
-* Opera
-* iOS
-* Android
+* Currently it is not being tested live
+
+## Contribute
+
+Do you feel like helping out making this project even better, feel free to get in contact with me
+
+However, since this is my first Open Source project I don't really know how Open source cooperation works, so you might have to explain it to me :p
 
 ##Foundation
 

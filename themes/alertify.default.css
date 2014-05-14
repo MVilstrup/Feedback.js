@@ -11,9 +11,9 @@
 	border: 10px solid rgba(0,0,0,.7);
 	border-radius: 8px;
 	box-shadow: 0 3px 3px rgba(0,0,0,.3);
-	-webkit-background-clip: padding;     /* Safari 4? Chrome 6? */
-	   -moz-background-clip: padding;     /* Firefox 3.6 */
-	        background-clip: padding-box; /* Firefox 4, Safari 5, Opera 10, IE 9 */
+	/*-webkit-background-clip: padding;     
+	   -moz-background-clip: padding;    
+	        background-clip: padding-box; */
 }
 .alertify-text {
 	border: 1px solid #CCC;
@@ -26,13 +26,6 @@
 	font-weight: bold;
 	padding: 6px 15px;
 	text-decoration: none;
-	text-shadow: 1px 1px 0 rgba(0,0,0,.5);
-	box-shadow: inset 0 1px 0 0 rgba(255,255,255,.5);
-	background-image: -webkit-linear-gradient(top, rgba(255,255,255,.3), rgba(255,255,255,0));
-	background-image:    -moz-linear-gradient(top, rgba(255,255,255,.3), rgba(255,255,255,0));
-	background-image:     -ms-linear-gradient(top, rgba(255,255,255,.3), rgba(255,255,255,0));
-	background-image:      -o-linear-gradient(top, rgba(255,255,255,.3), rgba(255,255,255,0));
-	background-image:         linear-gradient(top, rgba(255,255,255,.3), rgba(255,255,255,0));
 }
 .alertify-button:hover,
 .alertify-button:focus {
@@ -53,29 +46,64 @@
 .alertify-button-cancel,
 .alertify-button-cancel:hover,
 .alertify-button-cancel:focus {
-	background-color: #FE1A00;
-	border: 1px solid #D83526;
+	background-color: #E6343B;
+	border: 1px solid #BC0521;
 }
 .alertify-button-ok,
 .alertify-button-ok:hover,
 .alertify-button-ok:focus {
-	background-color: #5CB811;
-	border: 1px solid #3B7808;
+	background-color: #2FAD6A;
+	border: 1px solid #018D3A;
 }
 
 .alertify-log {
-	background: #1F1F1F;
-	background: rgba(0,0,0,.9);
+	background: #F3A02B;
 	padding: 15px;
 	border-radius: 4px;
 	color: #FFF;
 	text-shadow: -1px -1px 0 rgba(0,0,0,.5);
 }
 .alertify-log-error {
-	background: #FE1A00;
-	background: rgba(254,26,0,.9);
+	background: #E6343B;
+
 }
 .alertify-log-success {
-	background: #5CB811;
-	background: rgba(92,184,17,.9);
+	background: #2FAD6A;
+
+}
+
+.alertify-image-button {
+	border-style: none;
+	font-style: none;
+	background-color: transparent;
+	width: 80px;
+	height: 80px;
+	color: transparent;
+}
+
+#alertify-pos {
+	background: url(../images/feedback_green.png)no-repeat center;
+	background-size: 50px 50px;
+}
+#alertify-pos:hover {
+	background: url(../images/feedback_green_hover.png)no-repeat center;
+	background-size: 58px 58px;
+}
+
+#alertify-neg {
+	background: url(../images/feedback_red.png)no-repeat center;
+	background-size: 50px 50px;
+}
+#alertify-neg:hover {
+	background: url(../images/feedback_red_hover.png)no-repeat center;
+	background-size: 58px 58px;
+}
+
+#alertify-neutral {
+	background: url(../images/feedback_yellow.png)no-repeat center;
+	background-size: 50px 50px;
+}
+#alertify-neutral:hover {
+	background: url(../images/feedback_yellow_hover.png)no-repeat center;
+	background-size: 58px 58px;
 }

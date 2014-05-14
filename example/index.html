@@ -15,14 +15,10 @@
 <body>
 
 	<h2>Dialogs</h2>
-	<a href="#" id="alert">Alert Dialog</a><br>
-	<a href="#" id="confirm">Confirm Dialog</a><br>
-	<a href="#" id="prompt">Prompt Dialog</a><br>
-	<a href="#" id="labels">Custom Labels</a><br>
-	<a href="#" id="focus">Button Focus</a><br>
-	<a href="#" id="order">Button Order</a>
-	<a href="#" id="feedback">feedback</a>
+	<a href="#" id="feedback"> Normal feedback</a><br>
+	<a href="#" id="feedback-detailed"> Detailed feedback</a> <br>
 
+	
 	<h2>Ajax</h2>
 	<a href="#" id="ajax">Ajax - Multiple Dialog</a>
 
@@ -85,15 +81,34 @@
 			return false;
 		});
 
+		$("#feedback-detailed").on( 'click', function () {
+			reset();
+			alertify.feedback("Do you like the design of this page?", function (e, str) {
+				var opinion = e;
+				if (opinion > 0) {
+					alertify.prompt("Could you tell us what you like?");
+					alertify.alert("Thank you for your feedback! <br> We are happy you like it!");
+				} else if(opinion < 0 ){
+					alertify.prompt("What could be improved?")
+					alertify.alert("Thank you for your feedback! <br> We will try to improve!");
+				} else if(opinion == 0 ){
+					alertify.prompt("What about it doesn't you like?")
+					alertify.alert("Thank you for your feedback! <br> Your opinion will be taken into account");
+				}
+			}, "Default Value");
+			return false;
+		});
+
 		$("#feedback").on( 'click', function () {
 			reset();
-			alertify.feedback("This is a prompt dialog", function (e, str) {
-								if (e > 0) {
-					alertify.success("We are happy you like it!");
-				} else if(e < 0 ){
-					alertify.error("We will try to improve");
-				} else if(e == 0 ){
-					alertify.log("Okay!");
+			alertify.feedback("Do you like the design of this page?", function (e, str) {
+				var opinion = e;
+				if (opinion > 0) {
+					alertify.success("Thank you for your feedback! <br> We are happy you like it!");
+				} else if(opinion < 0 ){
+					alertify.error("Thank you for your feedback! <br> We will try to improve!");
+				} else if(opinion == 0 ){
+					alertify.log("Thank you for your feedback! <br> Your opinion will be taken into account");
 				}
 			}, "Default Value");
 			return false;
