@@ -241,6 +241,22 @@
 			},
 
 			/**
+			 * Append button HTML strings
+			 *
+			 * @param {String} secondary    The secondary button HTML string
+			 * @param {String} primary      The primary button HTML string
+			 *
+			 * @return {String}             The appended button HTML strings
+			 */
+			appendButtons : function (secondary, primary, tertiary) {
+				if(tertiary){
+					return this.buttonReverse ? primary + secondary + tertiary : tertiary + secondary + primary;
+				} else {
+					return this.buttonReverse ? primary + secondary : secondary + primary;
+				}
+			},
+
+			/**
 			 * Bind events to elements
 			 *
 			 * @param  {Object}   el       HTML Object
@@ -254,39 +270,6 @@
 					el.addEventListener(event, fn, false);
 				} else if (el.attachEvent) {
 					el.attachEvent("on" + event, fn);
-				}
-			},
-
-			/**
-			 * Use feedback as the global error handler (using window.onerror)
-			 *
-			 * @return {boolean} success
-			 */
-			handleErrors : function () {
-				if (typeof global.onerror !== "undefined") {
-					var self = this;
-					global.onerror = function (msg, url, line) {
-						self.error("[" + msg + " on line " + line + " of " + url + "]", 0);
-					};
-					return true;
-				} else {
-					return false;
-				}
-			},
-
-			/**
-			 * Append button HTML strings
-			 *
-			 * @param {String} secondary    The secondary button HTML string
-			 * @param {String} primary      The primary button HTML string
-			 *
-			 * @return {String}             The appended button HTML strings
-			 */
-			appendButtons : function (secondary, primary, tertiary) {
-				if(tertiary){
-					return this.buttonReverse ? primary + secondary + tertiary : tertiary + secondary + primary;
-				} else {
-					return this.buttonReverse ? primary + secondary : secondary + primary;
 				}
 			},
 
@@ -348,6 +331,7 @@
 				elCover.className  = "feedback-cover";
 				return html;
 			},
+
 
 			/**
 			 * Close the log messages
@@ -449,6 +433,23 @@
 					this.log(message, type, wait);
 					return this;
 				};
+			},
+
+			/**
+			 * Use feedback as the global error handler (using window.onerror)
+			 *
+			 * @return {boolean} success
+			 */
+			handleErrors : function () {
+				if (typeof global.onerror !== "undefined") {
+					var self = this;
+					global.onerror = function (msg, url, line) {
+						self.error("[" + msg + " on line " + line + " of " + url + "]", 0);
+					};
+					return true;
+				} else {
+					return false;
+				}
 			},
 
 			/**
