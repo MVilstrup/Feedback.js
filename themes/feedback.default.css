@@ -57,23 +57,22 @@
 }
 
 .feedback-log {
-	background: #333;
+	background: #166CEC;
 	padding: 15px;
 	border-radius: 4px;
 	color: #FFF;
-	text-shadow: -1px -1px 0 rgba(0,0,0,.5);
 }
 
 .feedback-log-neutral {
-	background: #F3A02B;
+	background: #FFB504;
 }
 
 .feedback-log-error {
-	background: #E6343B;
+	background: #D8442F;
 }
 
 .feedback-log-success {
-	background: #2FAD6A;
+	background: #009957;
 
 }
 
@@ -111,4 +110,10 @@
 #feedback-neutral:hover {
 	background: url(../images/feedback_yellow_hover.png)no-repeat center;
 	background-size: 58px 58px;
+}
+
+.feedback-log-feed {
+	height: 200px;
+	width: 200px;
+
 }
