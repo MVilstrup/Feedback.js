@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>alertify.js - example page</title>
+	<link rel="stylesheet" href="../themes/test.css" />
+	<link rel="stylesheet" href="../themes/feedback.test.css" id="toggleCSS" />
+	<meta name="viewport" content="width=device-width">
+	<style>
+		.feedback-log-custom {
+			background: blue;
+		}
+	</style>
+</head>
+<body>
+
+	<h2>Dialogs</h2>
+
+	<div id="feedback-log"> </div>
+
+	<h2>Logs</h2>
+	<a href="#" id="feed">feed log</a><br>
+
+
+	<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+	<script src="feedback_log.js"></script>
+	<script>
+
+		// ==============================
+		// Standard Dialogs
+		$("#feed").click(function(){
+			alertify.feed("Will stay until clicked", "feed", 0);
+			return false;
+		})
+	</script>
+
+</body>
+</html>

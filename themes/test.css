@@ -1,0 +1,175 @@
+
+/*
+	----------------------------------- GENERAL FUNCITONALITY --------------------------------------
+*/
+
+.eye {
+	width:16%;
+	height:20%;
+	border-radius:50%;
+	top: 29%;
+	position:relative;
+}
+
+.feedback-smiley {
+	position: relative;
+	width:40px;
+	height:40px;
+	border-radius:50%;
+	border:3px solid;
+	z-index: 9998;
+}
+
+#feedback-yellow {
+	margin-right:10px;
+	margin-left:10px;
+}
+
+#feedback-wrapper{
+	max-width:300px;
+	margin:120px auto;
+	padding:0px 20px;
+}
+.floatleft{
+	float:left;
+}
+
+.smile {
+	overflow: hidden;
+	position: absolute;
+}
+
+.overlay {
+	width: 100%;
+	height: 100%;
+	opacity: 0;
+	background-color: #000;
+	z-index: 99999;
+	border-radius:50%;
+    -moz-transition: all 0.1s;
+    -webkit-transition: all 0.1s;
+    transition: all 0.1s;
+}
+
+.overlay:hover {
+	opacity: 0.1;
+}
+
+/*
+	----------------------------------------------- COLOURS -------------------------------------
+*/
+
+.smiley-green{
+	background:#a9db7a;
+	border-color:  #92c563;
+
+}
+
+.smiley-green .eye, .smiley-green .smile:after, .smiley-green .smile:before {
+	background:#84b458;
+}
+
+.smiley-yellow{
+	background:#eed16a;
+	border-color: #dbae51;
+
+}
+
+.smiley-yellow .eye, .smiley-yellow .smile {
+	background:#dba652;
+}
+
+.smiley-red{
+	background:#ee9295;
+	border-color: #e27378;
+}
+
+.smiley-red .eye,  .smiley-red .smile:after, .smiley-red .smile:before{
+	background:#d96065;
+}
+
+
+/*
+	-------------------------------------------- Appearance -----------------------------------------
+*/
+
+
+.smiley-green .left-eye{
+	left:22%;
+	float: left;
+}
+.smiley-green .right-eye{
+	right: 22%;
+	float: right;
+}
+
+
+.smiley-green .smile{
+	top:67%;
+	left:22.5%;
+	width:60%;
+	height:20%;
+}
+ .smiley-green .smile:after, .smiley-green .smile:before{
+ 	content:"";
+ 	position:absolute;
+ 	top:-50%;
+ 	left:0%;
+ 	border-radius:50%;
+	background:#84b458;
+	height:100%;
+	width:97%;
+ }
+ .smiley-green .smile:after{
+	height: 80%;
+	top: -40%;
+	left: 0%;
+}
+
+.smiley-yellow .left-eye{
+	left:22%;
+	float: left;
+}
+.smiley-yellow .right-eye{
+	right: 22%;
+	float: right;
+}
+.smiley-yellow .smile{
+	position: absolute;
+	top:67%;
+	left:21%;
+	width:60%;
+	height:9%;
+	border-radius:15px;
+}
+
+
+.smiley-red .left-eye{
+	left:22%;
+	float: left;
+}
+.smiley-red .right-eye{
+	right: 22%;
+	float: right;
+}
+.smiley-red .smile{
+	position: absolute;
+	top:57%;
+	left:22.5%;
+	width:60%;
+	height:20%;
+}
+ .smiley-red .smile:after, .smiley-red .smile:before{
+ 	content:"";
+ 	position:absolute;
+ 	top:50%;
+ 	left:0%;
+ 	border-radius:50%;
+	height:100%;
+	width:97%;
+ }
+ .smiley-red .smile:after{
+	height: 80%;
+	top: 60%;
+	left: 0%;
+}
