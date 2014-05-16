@@ -1,25 +1,17 @@
-
-.feedback-log {
-	-webkit-transition: all 1000ms cubic-bezier(0.175, 0.885, 0.320, 1.275);
-	   -moz-transition: all 1000ms cubic-bezier(0.175, 0.885, 0.320, 1.275);
-	    -ms-transition: all 1000ms cubic-bezier(0.175, 0.885, 0.320, 1.275);
-	     -o-transition: all 1000ms cubic-bezier(0.175, 0.885, 0.320, 1.275);
-	        transition: all 1000ms cubic-bezier(0.175, 0.885, 0.320, 1.275); /* easeOutBack */
-}
-
-.feedback-log-hide {
-	-webkit-transition: all 1000ms cubic-bezier(0.600, -0.280, 0.735, 0.045);
-	   -moz-transition: all 1000ms cubic-bezier(0.600, -0.280, 0.735, 0.045);
-	    -ms-transition: all 1000ms cubic-bezier(0.600, -0.280, 0.735, 0.045);
-	     -o-transition: all 1000ms cubic-bezier(0.600, -0.280, 0.735, 0.045);
-	        transition: all 1000ms cubic-bezier(0.600, -0.280, 0.735, 0.045); /* easeInBack */
-}
+/*
+  ---------------------------------------------- OLD BROWSERS --------------------------------------
+*/
 
 /* overwrite display: none; for everything except IE6-8 */
 :root *> .feedback-hidden {
 	display: block;
 	visibility: hidden;
 }
+
+/*
+	------------------------------------- CLASS SELECTORS ----------------------------------------
+*/
+
 .feedback-logs {
 	position: fixed;
 	z-index: 1000;
@@ -27,7 +19,7 @@
 	right: 10px;
 	width: 400px;
 }
-.feedback-logs-hidden {
+.feedback-log-hidden {
 	display: none;
 }
 .feedback-log {
@@ -38,18 +30,6 @@
 	height: 150px;
 	position: relative;
 	bottom: -300px;
-	opacity: 0;
-}
-.feedback-log-show {
-	bottom: 0;
-	opacity: 1;
-}
-.feedback-log-hide {
-	-webkit-transform: translate(0, 300px);
-	   -moz-transform: translate(0, 300px);
-	    -ms-transform: translate(0, 300px);
-	     -o-transform: translate(0, 300px);
-	        transform: translate(0, 300px);
 	opacity: 0;
 }
 
@@ -87,20 +67,6 @@
 	margin-left: 5px;
 }
 
-@media only screen and (max-width: 680px) {
-	.feedback,
-	.feedback-logs {
-		width: 90%;
-		-webkit-box-sizing: border-box;
-		   -moz-box-sizing: border-box;
-		        box-sizing: border-box;
-	}
-	.feedback {
-		left: 5%;
-		margin: 0;
-	}
-}
-
 .feedback-log {
 	font-family: sans-serif;
 }
@@ -126,15 +92,6 @@
 	padding: 6px 15px;
 	text-decoration: none;
 }
-.feedback-button:hover,
-.feedback-button:focus {
-	outline: none;
-	background-image: -webkit-linear-gradient(top, rgba(0,0,0,.1), rgba(0,0,0,0));
-	background-image:    -moz-linear-gradient(top, rgba(0,0,0,.1), rgba(0,0,0,0));
-	background-image:     -ms-linear-gradient(top, rgba(0,0,0,.1), rgba(0,0,0,0));
-	background-image:      -o-linear-gradient(top, rgba(0,0,0,.1), rgba(0,0,0,0));
-	background-image:         linear-gradient(top, rgba(0,0,0,.1), rgba(0,0,0,0));
-}
 .feedback-button:focus {
 	box-shadow: 0 0 15px #2B72D5;
 }
@@ -153,4 +110,110 @@
 .feedback-button-ok:focus {
 	background-color: #2FAD6A;
 	border: 1px solid #018D3A;
+}
+
+.feedback-image-button, 
+.feedback-image-button:hover, 
+.feedback-image-button:focus,
+.feedback-image-button:active {
+	padding: none;
+	border-style: none;
+	margin: none;
+	box-shadow: none;
+	font-style: none;
+	background-color: transparent;
+	color: transparent;
+	width: 80px;
+	height: 80px;
+}
+
+/*
+ 	--------------------------------------- ID SELECTORS ------------------------------------
+*/
+
+#feedback-positive {
+	background: url(../images/feedback_green.svg)no-repeat center;
+	background-size: 80px 80px;
+}
+#feedback-positive:hover {
+	background: url(../images/feedback_green_hover.svg)no-repeat center;
+	background-size: 80px 80px;
+}
+
+#feedback-negative {
+	background: url(../images/feedback_red.svg)no-repeat center;
+	background-size: 80px 80px;
+}
+#feedback-negative:hover {
+	background: url(../images/feedback_red_hover.svg)no-repeat center;
+	background-size: 80px 80px;
+}
+
+#feedback-neutral {
+	background: url(../images/feedback_yellow.svg)no-repeat center;
+	background-size: 80px 80px;
+}
+#feedback-neutral:hover {
+	background: url(../images/feedback_yellow_hover.svg)no-repeat center;
+	background-size: 80px 80px;
+}
+
+/*
+	-------------------------------------- ANIMATIONS -------------------------------------
+*/
+.feedback-button:hover,
+.feedback-button:focus {
+	outline: none;
+	background-image: -webkit-linear-gradient(top, rgba(0,0,0,.1), rgba(0,0,0,0));
+	background-image:    -moz-linear-gradient(top, rgba(0,0,0,.1), rgba(0,0,0,0));
+	background-image:     -ms-linear-gradient(top, rgba(0,0,0,.1), rgba(0,0,0,0));
+	background-image:      -o-linear-gradient(top, rgba(0,0,0,.1), rgba(0,0,0,0));
+	background-image:         linear-gradient(top, rgba(0,0,0,.1), rgba(0,0,0,0));
+}
+
+
+.feedback-log {
+	-webkit-transition: all 1000ms cubic-bezier(0.175, 0.885, 0.320, 1.275);
+	   -moz-transition: all 1000ms cubic-bezier(0.175, 0.885, 0.320, 1.275);
+	    -ms-transition: all 1000ms cubic-bezier(0.175, 0.885, 0.320, 1.275);
+	     -o-transition: all 1000ms cubic-bezier(0.175, 0.885, 0.320, 1.275);
+	        transition: all 1000ms cubic-bezier(0.175, 0.885, 0.320, 1.275); /* easeOutBack */
+}
+
+.feedback-log-hide {
+	-webkit-transition: all 1000ms cubic-bezier(0.600, -0.280, 0.735, 0.045);
+	   -moz-transition: all 1000ms cubic-bezier(0.600, -0.280, 0.735, 0.045);
+	    -ms-transition: all 1000ms cubic-bezier(0.600, -0.280, 0.735, 0.045);
+	     -o-transition: all 1000ms cubic-bezier(0.600, -0.280, 0.735, 0.045);
+	        transition: all 1000ms cubic-bezier(0.600, -0.280, 0.735, 0.045); /* easeInBack */
+
+	-webkit-transform: translate(0, 300px);
+	   -moz-transform: translate(0, 300px);
+	    -ms-transform: translate(0, 300px);
+	     -o-transform: translate(0, 300px);
+	        transform: translate(0, 300px);
+	opacity: 0;
+}
+
+.feedback-log-show {
+	bottom: 0;
+	opacity: 1;
+}
+
+/*
+	------------------------------------ FLEXIBILITY ----------------------------------------
+*/
+
+@media only screen and (max-width: 680px) {
+	.feedback,
+	.feedback-logs {
+		width: 90%;
+		-webkit-box-sizing: border-box;
+		   -moz-box-sizing: border-box;
+		        box-sizing: border-box;
+	}
+	.feedback {
+		left: 5%;
+		margin: 0;
+	}
 }

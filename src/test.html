@@ -23,13 +23,19 @@
 
 
 	<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
-	<script src="feedback_log.js"></script>
+	<script src="feedback_log_custom.js"></script>
 	<script>
-
+	var feedback = new FeedbackLog("");
 		// ==============================
 		// Standard Dialogs
 		$("#feed").click(function(){
-			alertify.feed("Will stay until clicked", "feed", 0);
+			feedback.build("How do you like this functionality?", function (e) {
+				if (e) {
+					console.log("foo");
+				} else {
+					console.log("bar");
+				}
+			});
 			return false;
 		})
 	</script>

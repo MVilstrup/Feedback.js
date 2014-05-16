@@ -150,36 +150,30 @@
 				};
 
 
-				// ok event handler
+				// positive event handler
 				pos = function (event) {
-					console.log("positive was pressed");
 					if (typeof event.preventDefault !== "undefined") event.preventDefault();
 					common(event);
-					if (typeof input !== "undefined") val = input.value;
 					if (typeof fn === "function") {
 						fn(1)					
 					}
 					return false;
 				};
 
-				// ok event handler
+				// negative event handler
 				neg = function (event) {
-					console.log("negative was pressed");
 					if (typeof event.preventDefault !== "undefined") event.preventDefault();
 					common(event);
-					if (typeof input !== "undefined") val = input.value;
 					if (typeof fn === "function") {
 						fn(-1);
 					}
 					return false;
 				};
 
-				// ok event handler
+				// neutral event handler
 				neutral = function (event) {
-					console.log("neutral was pressed");
 					if (typeof event.preventDefault !== "undefined") event.preventDefault();
 					common(event);
-					if (typeof input !== "undefined") val = input.value;
 					if (typeof fn === "function") {
 						fn(0);
 					}
