@@ -76,40 +76,47 @@
 
 }
 
-.feedback-image-button {
+.feedback-image-button, 
+.feedback-image-button:hover, 
+.feedback-image-button:focus,
+.feedback-image-button:active {
+	padding: none;
 	border-style: none;
+	margin: none;
+	box-shadow: none;
 	font-style: none;
 	background-color: transparent;
+	color: transparent;
 	width: 80px;
 	height: 80px;
-	color: transparent;
 }
 
+
 #feedback-pos {
-	background: url(../images/feedback_green.png)no-repeat center;
-	background-size: 50px 50px;
+	background: url(../images/feedback_green.svg)no-repeat center;
+	background-size: 80px 80px;
 }
 #feedback-pos:hover {
-	background: url(../images/feedback_green_hover.png)no-repeat center;
-	background-size: 58px 58px;
+	background: url(../images/feedback_green_hover.svg)no-repeat center;
+	background-size: 80px 80px;
 }
 
 #feedback-neg {
-	background: url(../images/feedback_red.png)no-repeat center;
-	background-size: 50px 50px;
+	background: url(../images/feedback_red.svg)no-repeat center;
+	background-size: 80px 80px;
 }
 #feedback-neg:hover {
-	background: url(../images/feedback_red_hover.png)no-repeat center;
-	background-size: 58px 58px;
+	background: url(../images/feedback_red_hover.svg)no-repeat center;
+	background-size: 80px 80px;
 }
 
 #feedback-neutral {
-	background: url(../images/feedback_yellow.png)no-repeat center;
-	background-size: 50px 50px;
+	background: url(../images/feedback_yellow.svg)no-repeat center;
+	background-size: 80px 80px;
 }
 #feedback-neutral:hover {
-	background: url(../images/feedback_yellow_hover.png)no-repeat center;
-	background-size: 58px 58px;
+	background: url(../images/feedback_yellow_hover.svg)no-repeat center;
+	background-size: 80px 80px;
 }
 
 .feedback-log-feed {
