@@ -39,7 +39,6 @@
 		<h2>Logs</h2>
 		<a href="#" id="detailed_feed">Detailed feed log</a><br>
 		<a href="#" id="simple_feed">Simple feed log</a><br>
-		<a href="#" id="alert">alert</a><br>
 	</div>
 	<div class="main">
 		<h3>This could easily be implemented server side</h3>
@@ -60,7 +59,7 @@
 
 
 	<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
-	<script src="../lib/feedback_log.js"></script>
+	<script src="../lib/feedback.js"></script>
 	<script>
 	$(document).ready(function(){
 		var detailedFeedback = new FeedbackLog("");
@@ -161,11 +160,6 @@
 			var base = document.getElementById('tbody');
 			base.appendChild(row);
 
-			return false;
-		})
-
-		$("#alert").click(function(){
-			alert("this can be clicked");
 			return false;
 		})
 
