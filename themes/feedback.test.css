@@ -1,6 +1,9 @@
 /*
   ---------------------------------------------- OLD BROWSERS --------------------------------------
 */
+body {
+	font: sans-serif;
+}
 
 /* overwrite display: none; for everything except IE6-8 */
 :root *> .feedback-hidden {
@@ -51,18 +54,11 @@
 }
 
 .feedback-buttons {
-	position: inherit;
 	position: absolute;
 	bottom: 10px;
 	width: 100%;
 }
 
-.feedback-button-cancel,
-.feedback-button-cancel:hover,
-.feedback-button-cancel:focus {
-	background-color: #E6343B;
-	border: 1px solid #BC0521;
-}
 .feedback-button-ok,
 .feedback-button-ok:hover,
 .feedback-button-ok:focus {
@@ -91,14 +87,14 @@
 .feedback-close:hover,
 .feedback-close:focus,
 .feedback-close:active,
-.feedback-close:visited  {
+.feedback-close:visited {
 	padding: none;
 	outline: none;
 	border-style: none;
 	margin: none;
 	box-shadow: none;
-	font-style: none;
-	background-color: transparent;
+	font-style: inherit;
+	background-color: inherit;
 	height: 20px;
 	width: 20px;
 	font-size: 12px;
@@ -107,8 +103,30 @@
 	float: right;
 }
 
-.feedback-close:hover{
+.feedback-close:hover, .feedback-cancel:hover{
 	color: #000;
+}
+
+.feedback-cancel, 
+.feedback-cancel:hover,
+.feedback-cancel:focus,
+.feedback-cancel:active,
+.feedback-cancel:visited {
+	padding: none;
+	outline: none;
+	border-style: none;
+	margin: none;
+	box-shadow: none;
+	font-style: inherit;
+	background-color: inherit;
+}
+
+.feedback-cancel {
+	float: left;
+	color: #999;
+	height: 20px;
+	margin-left: 2%;
+	vertical-align: center;
 }
 
 .feedback-log {
@@ -119,7 +137,9 @@
 	border-top-right-radius: 8px;
 	border-bottom: none;
 	z-index: 1000;
-	background-color: #FFF;
+	background-color: inherit;
+	font: inherit;
+	font-size: inherit;
 	width: 300px;
 	height: 150px;
 	right: 5%;
@@ -157,7 +177,7 @@
 .feedback-text {
 	border: 1px solid #CCC;
 	border-radius: 4px;
-	max-width: 90%;
+	width: 95%;
 }
 
 

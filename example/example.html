@@ -22,7 +22,7 @@
 
 
 	<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
-	<script src="feedback_log_custom.js"></script>
+	<script src="../lib/feedback_log.js"></script>
 	<script>
 	$(document).ready(function(){
 		var feedback = new FeedbackLog("");
@@ -30,8 +30,14 @@
 		// ==============================
 		// Standard Dialogs
 		$("#feed").click(function(){
-			feedback.show("How do you like this functionality?", function (e) {
+			feedback.show("How do you like this functionality?", function (e,str) {
 				
+				if(e){
+					console.log("User pressed ok, with text: " + str);
+				} else {
+					console.log("Closed");
+				}
+
 				switch(e.opinion) {
 					case 1:
 						console.log("positive");
@@ -42,9 +48,6 @@
 					case -1:
 						console.log("negative");
 					break;
-				}
-				if(!e){
-					console.log("Closed");
 				}
 			});
 			return false;
