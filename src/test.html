@@ -16,28 +16,45 @@
 
 	<h2>Dialogs</h2>
 
-	<div id="feedback-log"> </div>
-
 	<h2>Logs</h2>
 	<a href="#" id="feed">feed log</a><br>
+	<a href="#" id="alert">alert</a><br>
 
 
 	<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
 	<script src="feedback_log_custom.js"></script>
 	<script>
-	var feedback = new FeedbackLog("");
+	$(document).ready(function(){
+		var feedback = new FeedbackLog("");
+		
 		// ==============================
 		// Standard Dialogs
 		$("#feed").click(function(){
-			feedback.build("How do you like this functionality?", function (e) {
-				if (e) {
-					console.log("foo");
-				} else {
-					console.log("bar");
+			feedback.show("How do you like this functionality?", function (e) {
+				
+				switch(e.opinion) {
+					case 1:
+						console.log("positive");
+					break;
+					case 0:
+						console.log("neutral");
+					break;
+					case -1:
+						console.log("negative");
+					break;
+				}
+				if(!e){
+					console.log("Closed");
 				}
 			});
 			return false;
 		})
+		$("#alert").click(function(){
+			alert("this can be clicked");
+			return false;
+		})
+
+	});
 	</script>
 
 </body>

@@ -14,12 +14,13 @@ var FeedbackLog = function(settings) {
 				cancel 	: "Cancel",
 		},
 		buttonReverse 	: false,
-		detailed 		: false
+		detailed 		: false,
+		inline 			: false,
+		holderID 		: ""
 	};
 
-	if (settings instanceof Array) {
-		this.setUp(settings);
-	}
+	
+	this.setUp(settings);
 
 	/**
 	 * 	The HTML code needed to place create the buttons.
@@ -27,30 +28,20 @@ var FeedbackLog = function(settings) {
 	 */
 	this.html = {
 		// Question and holder for buttons
-		question : '<div class=" feedback-question ">{{question}}</div>',
-		holder 	 : '<nav class=" feedback-buttons ">{{buttons}}</nav>',
+		layout 		 : '<div id="feedback-log-top"></div> <div id="feedback-log-bottom">{{bottom}}</div>',
+		question 	 : '<div class=" feedback-question ">{{question}}</div>',
+		buttonNav 	 : '<nav class=" feedback-buttons ">{{buttons}}</nav>',
 		
 		// Buttons
 		ok 		 	: '<button class=" feedback-button feedback-button-ok " id="feedback-ok">{{ok}}</button>',
 		cancel 	 	: '<button class=" feedback-button feedback-button-cancel " id="feedback-cancel">{{cancel}}</button>',
-		positive	: '<button class=" feedback-image-button feedback-button-positive" id="feedback-positive"></button>',
+		positive	: '<button class=" feedback-button feedback-image-button feedback-button-positive" id="feedback-positive"></button>',
 		neutral 	: '<button class=" feedback-button feedback-image-button feedback-button-neutral " id="feedback-neutral"></button>',
 		negative 	: '<button class=" feedback-button feedback-image-button feedback-button-negative" id="feedback-negative"></button>',
 
 		//Text area used in the detailed feedback
 		textarea 	: '<div class=" feedback-text-wrapper "><textarea class=" feedback-text " rows="5" id=" feedback-text "></textarea>'
 	};
-	
-
-	
-		document.getElementById(this.settings.id).remove();
-
-
-	var base = document.createElement("section");
-	base.setAttribute("id", this.settings.id);
-	base.className = "feedback-log-hidden";
-
-	document.body.appendChild(base);
 
 }
 
@@ -68,9 +59,10 @@ var FeedbackLog = function(settings) {
  *
  * @return {undefined}
  */
-FeedbackLog.prototype.addListener = function(btnID, fn) {
+FeedbackLog.prototype.updateListener = function(btnID, fn, on) {
 	
 	var button = this.get(btnID);
+	var self = this;
 
 	if(typeof button !== "undefined"){
 		switch  (btnID) {
@@ -78,7 +70,7 @@ FeedbackLog.prototype.addListener = function(btnID, fn) {
 			// ok event handler
 			case "feedback-ok":
 				
-				var ok = function (event) {
+				ok = function (event) {
 					if (typeof event.preventDefault !== "undefined") event.preventDefault();
 
 					if (typeof input !== "undefined") val = input.value;
@@ -90,19 +82,30 @@ FeedbackLog.prototype.addListener = function(btnID, fn) {
 					}
 					return false;
 				};
-				this.bind(button, "click", ok);
+				if(on){
+					this.bind(button, "click", ok);
+				} else {
+					this.unbind(button, "click", ok);
+				}
 			break;
 
 			// cancel event handler
-			case "feedback-cancel":
+			case "feedback-cancel", "feedback-close":
 
 				var cancel = function (event) {
 						if (typeof event.preventDefault !== "undefined") event.preventDefault();
 
 						if (typeof fn === "function") fn(false);
+						
+						self.close();
+
 						return false;
 				};
-				this.bind(button, "click", cancel);
+				if(on){
+					this.bind(button, "click", cancel);
+				} else {
+					this.unbind(button, "click", cancel);
+				}
 			break;
 
 			// positive event handler
@@ -112,14 +115,18 @@ FeedbackLog.prototype.addListener = function(btnID, fn) {
 					if (typeof event.preventDefault !== "undefined") event.preventDefault();
 
 					if (typeof fn === "function") {
-						fn(1)					
+						fn({opinion: 1})					
 					}
 
-					this.close();
+					self.close();
 
 					return false;
 				};
-				this.bind(button, "click", positive);
+				if(on){
+					this.bind(button, "click", positive);
+				} else {
+					this.unbind(button, "click", positive);
+				}
 			break;
 
 			// neutral event handler
@@ -128,14 +135,18 @@ FeedbackLog.prototype.addListener = function(btnID, fn) {
 					if (typeof event.preventDefault !== "undefined") event.preventDefault();
 
 					if (typeof fn === "function") {
-						fn(0);
+						fn({opinion: 0});
 					}
 
-					this.close();
+					self.close();
 
 					return false;
 				};
-				this.bind(button, "click", neutral);
+				if(on){
+					this.bind(button, "click", neutral);
+				} else {
+					this.unbind(button, "click", neutral);
+				}
 			break;
 
 			// negative event handler
@@ -145,14 +156,18 @@ FeedbackLog.prototype.addListener = function(btnID, fn) {
 
 					
 					if (typeof fn === "function") {
-						fn(-1);
+						fn({opinion: -1});
 					}
 
-					this.close();
+					self.close();
 
 					return false;
 				};
-				this.bind(button, "click", negative);
+				if(on){
+					this.bind(button, "click", negative);
+				} else {
+					this.unbind(button, "click", negative);
+				}
 			break;
 
 			// No default implemented
@@ -195,42 +210,34 @@ FeedbackLog.prototype.bind = function (el, event, fn) {
 	} else if (el.attachEvent) {
 		el.attachEvent("on" + event, fn);
 	}
-},
-
-/**
- * Append button HTML strings
- *
- * @param {Array} 		settings    The secondary button HTML string
- * @param {Function} 	fn    		[Optional] Callback function 
- *
- * @return {FeedbackLog}       The normal FeedbackLog without a text area.
- */
-FeedbackLog.prototype.build = function(question, fn) {
-	var base = this.get(this.settings.id);
-	// console.log(base);
-	
-	base.className = this.settings.classes + "feedback-log-show";
-
-	html = this.html.question;
-	html = html.replace("{{question}}", question);
-
-	html += this.html.holder;
-	html = html.replace("{{buttons}}", this.appendButtons(this.html.neutral, this.html.positive, this.html.negative));
-
-	
-	base.innerHTML = html;
-	console.log(base);
-
-	this.addListener('feedback-positive', fn);
-	this.addListener('feedback-neutral', fn);
-	this.addListener('feedback-negative', fn);
-
-	return this;
 };
 
+/**
+ * Unbind events to elements
+ *
+ * @param  {Object}   el       HTML Object
+ * @param  {Event}    event    Event to detach to element
+ * @param  {Function} fn       Callback function
+ *
+ * @return {undefined}
+ */
+FeedbackLog.prototype.unbind = function (el, event, fn) {
+	if (typeof el.removeEventListener === "function") {
+		el.removeEventListener(event, fn, false);
+	} else if (el.detachEvent) {
+		el.detachEvent("on" + event, fn);
+	}
+}
+
 FeedbackLog.prototype.close = function(fn) {
+	
+	this.updateListener('feedback-positive', fn, false);
+	this.updateListener('feedback-neutral', fn, false);
+	this.updateListener('feedback-negative', fn, false);
+	this.updateListener('feedback-close', fn, false);
 
-
+	var base = this.get(this.settings.id);
+	base.className = "feedback-log feedback-log-hidden";
 };
 
 FeedbackLog.prototype.details = function(fn) {
@@ -248,6 +255,7 @@ FeedbackLog.prototype.get = function (id) {
 	return document.getElementById(id);
 };
 
+
 /**
  * Shorthand for document.getElementById()
  *
@@ -255,31 +263,80 @@ FeedbackLog.prototype.get = function (id) {
  * @return {Object}       HTML element
  */
 FeedbackLog.prototype.setUp = function (settings) {
+	if (settings instanceof Array) {
+		if(settings.classes){
+			base.className += " " + settings.classes;
+		}
+
+		if (settings.id) {
+			base.setAttribute("id", settings.id);
+		}
+
+		if (settings.labels.ok){
+			this.settings.labels.ok = settings.labels.ok;
+		}
+
+		if (settings.labels.cancel){
+			this.settings.labels.cancel = settings.labels.cancel;
+		}
+
+		if (settings.buttonReverse) {
+			this.buttonReverse = true;
+		}
+
+		if (settings.detailed) {
+			this.detailed = true;
+		}
+	}
+
+	var base = document.createElement("section");
+	base.setAttribute("id", this.settings.id);
+	base.className = "feedback-log feedback-log-hidden";
+
+	document.body.appendChild(base);
+
+};
+
+/**
+ * Append button HTML strings
+ *
+ * @param {Array} 		settings    The secondary button HTML string
+ * @param {Function} 	fn    		[Optional] Callback function 
+ *
+ * @return {FeedbackLog}       		The normal FeedbackLog without a text area.
+ */
+FeedbackLog.prototype.show = function(question, fn) {
 	
-	if(settings.classes){
-		base.className += "" + settings.classes;
+	var base = this.get(this.settings.id);
+	if(base === "undefined"){
+		console.log("this is the problem");
 	}
+	
+	var log = document.createElement("article");
 
-	if (settings.id) {
-		base.setAttribute("id", settings.id);
-	}
+	base.className = this.settings.classes + " feedback-log-show";
+	var html = this.html.layout;
 
-	if (settings.labels.ok){
-		this.settings.labels.ok = settings.labels.ok;
-	}
+	var bottom = this.html.question;
+	bottom += this.html.buttonNav;
 
-	if (settings.labels.cancel){
-		this.settings.labels.cancel = settings.labels.cancel;
-	}
+	html = html.replace("{{bottom}}", bottom);
+	html = html.replace("{{question}}", question);
+	html = html.replace("{{buttons}}", this.appendButtons(this.html.neutral, this.html.positive, this.html.negative));
+	
+	base.innerHTML = html;
 
-	if (settings.buttonReverse) {
-		this.buttonReverse = true;
-	}
+	var top = this.get("feedback-log-top");
+	var cancel = document.createElement("button");
+	cancel.innerHTML = "&#10006";
+	cancel.className = "feedback-close";
+ 	cancel.setAttribute("id", 'feedback-close');
+	top.appendChild(cancel);
 
-	if (settings.detailed) {
-		this.detailed = true;
-	}
-
+	this.updateListener('feedback-positive', fn, true);
+	this.updateListener('feedback-neutral', fn, true);
+	this.updateListener('feedback-negative', fn, true);
+	this.updateListener('feedback-close', fn, true);
 };
 
 
