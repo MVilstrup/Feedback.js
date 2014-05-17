@@ -10,16 +10,53 @@
 		.feedback-log-custom {
 			background: blue;
 		}
+
+		.side {
+			float: left;
+			width: 19%;
+		}
+
+		.main {
+			width: 80%;
+			margin-top: 50px;
+			display: block;
+			text-align: center;
+		}
+		table {
+			width: 70%;
+		}
+
+		th, td {
+			border: 1px solid #000;
+		}
 	</style>
 </head>
 <body>
 
-	<h2>Dialogs</h2>
+	<div class="side">
+		<h2>Dialogs</h2>
 
-	<h2>Logs</h2>
-	<a href="#" id="detailed_feed">Detailed feed log</a><br>
-	<a href="#" id="simple_feed">Simple feed log</a><br>
-	<a href="#" id="alert">alert</a><br>
+		<h2>Logs</h2>
+		<a href="#" id="detailed_feed">Detailed feed log</a><br>
+		<a href="#" id="simple_feed">Simple feed log</a><br>
+		<a href="#" id="alert">alert</a><br>
+	</div>
+	<div class="main">
+		<h3>This could easily be implemented server side</h3>
+		<table>
+			<thead>
+				<tr>
+					<th> User-ID </th>
+					<th> Date </th>
+					<th> Rating </th>
+					<th> Description</th>
+				</tr>
+			</thead>
+			<tbody id="tbody">
+				
+			</tbody>
+		</table>
+	</div>
 
 
 	<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
@@ -30,51 +67,103 @@
 		var simpleFeedback = new FeedbackLog({
 			detailed : false
 		})
+
+		var userID = 1;
+
 		// ==============================
 		// Standard Dialogs
 		$("#detailed_feed").click(function(){
 
+			var row = document.createElement("tr");
+			
+			var id = document.createElement("td"); 
+			var date = document.createElement("td");
+			var rating = document.createElement("td"); 
+			var description = document.createElement("td");
+
+			id.innerHTML = "" + userID++;
+			date.innerHTML = "" + new Date();
+
+
+
 			detailedFeedback.show("How do you like this functionality?", function (e,str) {
 				
 				if(e){
-					console.log("User pressed ok, with text: " + str);
+					if (str){
+						description.innerHTML = str;
+					} else if ("opinion" in e) {
+						switch(e.opinion) {
+							case 1:
+								rating.innerHTML = 1;
+								break;
+							case 0:
+								rating.innerHTML = 0;
+								break;
+							case -1:
+								rating.innerHTML = -1;
+								break;
+							default:
+								rating.innerHTML = "";
+								break;
+						}
+					}
 				} else {
-					console.log("Closed");
+					description.innerHTML = "";
 				}
 
-				switch(e.opinion) {
-					case 1:
-						console.log("positive");
-					break;
-					case 0:
-						console.log("neutral");
-					break;
-					case -1:
-						console.log("negative");
-					break;
-				}
 			});
+
+			row.appendChild(id);
+			row.appendChild(date);
+			row.appendChild(rating);
+			row.appendChild(description);
+			var base = document.getElementById('tbody');
+			base.appendChild(row);
+			
+
 			return false;
 		})
 
 		$("#simple_feed").click(function(){
 
+			var row = document.createElement("tr");
+			
+			var id = document.createElement("td"); 
+			var date = document.createElement("td");
+			var rating = document.createElement("td"); 
+			var description = document.createElement("td");
+
+			id.innerHTML = "" + userID++;
+			date.innerHTML = "" + new Date();
+
 			simpleFeedback.show("How do you like this functionality?", function (e,str) {
 
 				switch(e.opinion) {
 					case 1:
-						console.log("positive");
-					break;
+						rating.innerHTML = 1;
+						break;
 					case 0:
-						console.log("neutral");
-					break;
+						rating.innerHTML = 0;
+						break;
 					case -1:
-						console.log("negative");
-					break;
+						rating.innerHTML = -1;
+						break;
+					default:
+						rating.innerHTML = "";
+						break;
 				}
 			});
+
+			row.appendChild(id);
+			row.appendChild(date);
+			row.appendChild(rating);
+			row.appendChild(description);
+			var base = document.getElementById('tbody');
+			base.appendChild(row);
+
 			return false;
 		})
+
 		$("#alert").click(function(){
 			alert("this can be clicked");
 			return false;
