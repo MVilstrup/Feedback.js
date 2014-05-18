@@ -174,13 +174,6 @@ body {
 	margin-top: 12%;
 }
 
-#feedback-question.detail-question {
-	margin-top: 5px;
-	margin-bottom: 5px;
-}
-#feedback-question.detail-question p{
-	margin: 5px;
-}
 
 /*
  	--------------------------------------- BOTTOM-LEFT LOG ------------------------------------
@@ -214,6 +207,14 @@ body {
 	opacity: 1;
 }
 
+#feedback-log-bottom-left #feedback-question.detail-question {
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+#feedback-log-bottom-left #feedback-question.detail-question p{
+	margin: 5px;
+}
+
 /*
  	--------------------------------------- BOTTOM-RIGHT LOG ------------------------------------
 */
@@ -243,6 +244,14 @@ body {
 	opacity: 1;
 }
 
+#feedback-log-bottom-right #feedback-question.detail-question {
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+#feedback-log-bottom-right #feedback-question.detail-question p{
+	margin: 5px;
+}
+
 /*
  	--------------------------------------- LEFT LOG ------------------------------------
 */
@@ -264,6 +273,12 @@ body {
 #feedback-log-left.feedback-log-show {
 	left: 0;
 	opacity: 1;
+}
+
+#feedback-log-left #feedback-text {
+	width: 90%;
+	height: 150px;
+	margin-bottom: 10px;
 }
 
 #feedback-log-left .feedback-image-button {
@@ -290,9 +305,19 @@ body {
 	opacity: 0;
 }
 
+#feedback-log-right #feedback-text {
+	width: 90%;
+	height: 150px;
+	margin-bottom: 10px;
+}
+
 #feedback-log-right.feedback-log-show {
 	right: 0;
 	opacity: 1;
+}
+
+#feedback-log-right .feedback-button-close {
+	float: left;
 }
 
 #feedback-log-right .feedback-image-button {
