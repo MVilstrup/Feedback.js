@@ -166,21 +166,11 @@ $(document).ready(function(){
 	*  All the commands for the simple feedback.. This is just to show their functionality.. You can add any method you like
 	*/
 
-		$("#simple_feed").click(function(){
-
-		var rating;
-
-		simpleBottomRight.show("How do you like this functionality?", function (e,str) {
-			append(e.opinion);
-		});
-
-		return false;
-	})
 	$("#simpleBottomRight").click(function(){
 
 		var rating;
 
-		simpleFeedback.show("How do you like this functionality?", function (e,str) {
+		simpleBottomRight.show("How do you like this functionality?", function (e,str) {
 			append(e.opinion);
 		});
 
@@ -220,58 +210,6 @@ $(document).ready(function(){
  	* 	However, since the method given is called twice, I cannot simply delegate the method to append.
 	*/
 
-	$("#detailedBottomRight").click(function(){
-
-		var row = document.createElement("tr");
-		
-		var id = document.createElement("td"); 
-		var date = document.createElement("td");
-		var rating = document.createElement("td"); 
-		var description = document.createElement("td");
-
-		id.innerHTML = "" + userID++;
-		date.innerHTML = "" + new Date();
-
-
-
-		detailedBottomRight.show("How do you like this functionality?", function (e,str) {
-			
-			if(e){
-				if (str){
-					description.innerHTML = str;
-				} else if ("opinion" in e) {
-					switch(e.opinion) {
-						case 1:
-							rating.innerHTML = 1;
-							break;
-						case 0:
-							rating.innerHTML = 0;
-							break;
-						case -1:
-							rating.innerHTML = -1;
-							break;
-						default:
-							rating.innerHTML = "";
-							break;
-					}
-				}
-			} else {
-				description.innerHTML = "";
-			}
-
-		});
-
-		row.appendChild(id);
-		row.appendChild(date);
-		row.appendChild(rating);
-		row.appendChild(description);
-		var base = document.getElementById('tbody');
-		base.appendChild(row);
-		
-
-		return false;
-	})
-	
 	$("#detailedBottomRight").click(function(){
 
 		var row = document.createElement("tr");
