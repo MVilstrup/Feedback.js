@@ -1,9 +1,6 @@
 /*
   ---------------------------------------------- OLD BROWSERS --------------------------------------
 */
-body {
-	font: sans-serif;
-}
 
 /* overwrite display: none; for everything except IE6-8 */
 :root *> .feedback-hidden {
@@ -12,58 +9,18 @@ body {
 }
 
 /*
-	------------------------------------- CLASS SELECTORS ----------------------------------------
+	------------------------------------- GENERAL RULES ----------------------------------------
 */
 
-.feedback {
-	background: #FFF;
-	border: 5px solid #333; /* browsers that don't support rgba */
-	border: 5px solid rgba(0,0,0,.7);
-	border-radius: 8px;
-	box-shadow: 0 3px 3px rgba(0,0,0,.3);
-	/*-webkit-background-clip: padding;     
-	   -moz-background-clip: padding;    
-	        background-clip: padding-box; */
+body {
+	font: sans-serif;
 }
 
-.feedback-button,
-.feedback-button:hover,
-.feedback-button:active,
-.feedback-button:visited {
-	color: #FFF;
-	font-weight: bold;
-	padding: 6px 15px;
-	text-decoration: none;
-	background: none;
-	border: none;
-	/* line-height and font-size for input button */
-	line-height: 1.5;
-	font-size: 100%;
-	display: inline-block;
-	cursor: pointer;
-	margin-left: 5px;
-	overflow: hidden;
-}
-
-.feedback-button:focus {
-	box-shadow: 0 0 15px #2B72D5;
-}
-.feedback-button:active {
-	position: relative;
-	box-shadow: inset 0 2px 4px rgba(0,0,0,.15), 0 1px 2px rgba(0,0,0,.05);
-}
-
-.feedback-buttons {
-	position: absolute;
-	bottom: 10px;
-	width: 100%;
-}
-
-.feedback-cancel, 
-.feedback-cancel:hover,
-.feedback-cancel:focus,
-.feedback-cancel:active,
-.feedback-cancel:visited {
+.feedback-button-cancel, 
+.feedback-button-cancel:hover,
+.feedback-button-cancel:focus,
+.feedback-button-cancel:active,
+.feedback-button-cancel:visited {
 	padding: none;
 	outline: none;
 	border-style: none;
@@ -74,18 +31,18 @@ body {
 	cursor: pointer
 }
 
-.feedback-cancel {
+.feedback-button-cancel {
 	float: left;
 	color: #999;
 	height: 20px;
 	margin-left: 2%;
 }
 
-.feedback-close, 
-.feedback-close:hover,
-.feedback-close:focus,
-.feedback-close:active,
-.feedback-close:visited {
+.feedback-button-close, 
+.feedback-button-close:hover,
+.feedback-button-close:focus,
+.feedback-button-close:active,
+.feedback-button-close:visited {
 	padding: none;
 	outline: none;
 	border-style: none;
@@ -102,7 +59,7 @@ body {
 	cursor: pointer;
 }
 
-.feedback-close:hover, .feedback-cancel:hover{
+.feedback-button-close:hover, .feedback-button-cancel:hover{
 	color: #000;
 }
 
@@ -123,41 +80,32 @@ body {
 	height: 65px;
 }
 
-
 .feedback-log {
 	position: fixed;
 	text-align: center;
 	border: 1px solid #999;
-	border-top-left-radius: 8px;
-	border-top-right-radius: 8px;
-	border-bottom: none;
 	background-color: #fff;
 	z-index: 1000;
 	font: inherit;
 	font-size: inherit;
-	width: 300px;
-	height: 150px;
-	right: 5%;
 
 	-webkit-transition: all 0.7s ease-in;
        -moz-transition: all 0.7s ease-in;
         -ms-transition: all 0.7s ease-in;
          -o-transition: all 0.7s ease-in;
             transition: all 0.7s ease-in;
-
 }
 
-.feedback-log-show {
-	bottom: 0;
-	opacity: 1;
+#feedback-log-top {
+	display: block;
+	height: 5%;
 }
 
-.feedback-log-hidden {
-	bottom: -300px;
-	opacity: 0;
+#feedback-log-bottom {
+	display: block;
 }
 
-.feedback-ok {
+.feedback-button-ok {
 	height: 30px;
 	width: 50px;
 	font-style: inherit;
@@ -170,9 +118,7 @@ body {
 	cursor: pointer;
 }
 
-.feedback-ok:hover,
-.feedback-image-button:focus,
-.feedback-image-button:active {
+.feedback-button-ok:hover {
 	background-color: #018D3A;
 }
 
@@ -182,17 +128,6 @@ body {
 	width: 95%;
 	margin-top: 5px;
 	margin-bottom: 5px;
-}
-#feedback-question {
-	margin-top: 12%;
-}
-
-#feedback-question.detail-question {
-	margin-top: 5px;
-	margin-bottom: 5px;
-}
-#feedback-question.detail-question p{
-	margin: 5px;
 }
 
 .feedback-log-content-show {
@@ -206,12 +141,7 @@ body {
 
 .feedback-log-content-hide {
 	opacity: 0;
-
 }
-
-/*
- 	--------------------------------------- ID SELECTORS ------------------------------------
-*/
 
 #feedback-positive {
 	background: url(../images/feedback_green.svg)no-repeat center;
@@ -240,20 +170,143 @@ body {
 	background-size: 80px 80px;
 }
 
-#feedback-log-top {
-	display: block;
-	height: 5%;
+#feedback-question {
+	margin-top: 12%;
+}
 
+#feedback-question.detail-question {
+	margin-top: 5px;
+	margin-bottom: 5px;
 }
-#feedback-log-bottom {
+#feedback-question.detail-question p{
+	margin: 5px;
+}
+
+/*
+ 	--------------------------------------- BOTTOM-LEFT LOG ------------------------------------
+*/ 
+
+#feedback-log-bottom-left {
+	left: 5%;
+}
+
+#feedback-log-bottom-left.feedback-log-hidden {
+	bottom: -300px;
+	opacity: 0;
+}
+
+#feedback-log-bottom-left.feedback-buttons {
+	position: absolute;
+	bottom: 10px;
+	width: 100%;
+}
+
+#feedback-log-bottom-left {
+	border-top-left-radius: 8px;
+	border-top-right-radius: 8px;
+	border-bottom: none;
+	width: 300px;
+	height: 150px;
+}
+
+#feedback-log-bottom-left.feedback-log-show {
+	bottom: 0;
+	opacity: 1;
+}
+
+/*
+ 	--------------------------------------- BOTTOM-RIGHT LOG ------------------------------------
+*/
+
+#feedback-log-bottom-right {
+	border-top-left-radius: 8px;
+	border-top-right-radius: 8px;
+	border-bottom: none;
+	width: 300px;
+	height: 150px;
+	right: 5%;
+}
+
+#feedback-log-bottom-right .feedback-buttons {
+	position: absolute;
+	bottom: 10px;
+	width: 100%;
+}
+
+#feedback-log-bottom-right.feedback-log-hidden {
+	bottom: -300px;
+	opacity: 0;
+}
+
+#feedback-log-bottom-right.feedback-log-show {
+	bottom: 0;
+	opacity: 1;
+}
+
+/*
+ 	--------------------------------------- LEFT LOG ------------------------------------
+*/
+#feedback-log-left {
+	border-top-right-radius: 8px;
+	border-bottom-right-radius: 8px;
+	border-left: none;
+	width: 150px;
+	height: 300px;
+	top: 5%;
+	text-align: center;
+}
+
+#feedback-log-left.feedback-log-hidden {
+	left: -150px;
+	opacity: 0;
+}
+
+#feedback-log-left.feedback-log-show {
+	left: 0;
+	opacity: 1;
+}
+
+#feedback-log-left .feedback-image-button {
 	display: block;
+	clear: both;
+	margin-left: 25%;
 }
+
+/*
+ 	--------------------------------------- RIGHT LOG ------------------------------------
+*/
+
+#feedback-log-right {
+	border-top-left-radius: 8px;
+	border-bottom-left-radius: 8px;
+	border-right: none;
+	width: 150px;
+	height: 300px;
+	top: 5%;
+}
+
+#feedback-log-right.feedback-log-hidden {
+	right: -150px;
+	opacity: 0;
+}
+
+#feedback-log-right.feedback-log-show {
+	right: 0;
+	opacity: 1;
+}
+
+#feedback-log-right .feedback-image-button {
+	display: block;
+	clear: both;
+	margin-left: 30%;
+}
+
 
 /*
 	------------------------------------ FLEXIBILITY ----------------------------------------
 */
 
-@media only screen and (max-width: 680px) {
+/*@media only screen and (max-width: 680px) {
 	.feedback{
 		width: 90%;
 		-webkit-box-sizing: border-box;
@@ -264,4 +317,4 @@ body {
 		left: 5%;
 		margin: 0;
 	}
-}
+}*/

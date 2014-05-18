@@ -2,25 +2,15 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>alertify.js - example page</title>
-	<link rel="stylesheet" href="../themes/test.css" />
+	<title>Feedback.js - example page</title>
 	<link rel="stylesheet" href="../themes/feedback.test.css" id="toggleCSS" />
 	<meta name="viewport" content="width=device-width">
 	<style>
-		.feedback-log-custom {
-			background: blue;
-		}
-
-		.side {
-			float: left;
-			width: 19%;
-		}
-
 		.main {
 			width: 80%;
 			margin-top: 50px;
 			display: block;
-			text-align: center;
+			margin:auto;
 		}
 		table {
 			width: 70%;
@@ -29,17 +19,18 @@
 		th, td {
 			border: 1px solid #000;
 		}
+
+		.examples {
+			width: 40%;
+			margin: auto;
+		}
+
+		.examples h2 {
+			text-align: center;
+		}
 	</style>
 </head>
 <body>
-
-	<div class="side">
-		<h2>Dialogs</h2>
-
-		<h2>Logs</h2>
-		<a href="#" id="detailed_feed">Detailed feed log</a><br>
-		<a href="#" id="simple_feed">Simple feed log</a><br>
-	</div>
 	<div class="main">
 		<h3>This could easily be implemented server side</h3>
 		<table>
@@ -55,116 +46,442 @@
 				
 			</tbody>
 		</table>
+
+		<div class="examples">
+			<h2>Examples</h2>
+			<ul>
+				<li> Bottom Right
+					<ul>
+						<li><a href="#" id="detailedBottomRight">Detailed Bottom Right</a></li>
+						<li><a href="#" id="simpleBottomRight">Simple Bottom Right</a></li>
+					</ul>
+				</li>
+				<li> Bottom Left
+					<ul>
+						<li><a href="#" id="detailedBottomLeft">Detailed Bottom left</a></li>
+						<a href="#" id="simpleBottomLeft">Simple Bottom Left</a>
+					</ul>
+				</li>
+				<li> Right
+					<ul>
+						<li><a href="#" id="detailedRight">Detailed Right</a></li>
+						<li><a href="#" id="simpleRight">Simple Right</a><br></li>
+					</ul>
+				</li>
+				<li> Left
+					<ul>
+						<li><a href="#" id="detailedLeft">Detailed Left</a></li>
+						<li><a href="#" id="simpleLeft">Simple Left</a><br></li>
+					</ul>
+				</li>
+			</ul>
+		</div>
 	</div>
 
 
-	<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
-	<script src="../lib/feedback.js"></script>
-	<script>
-	$(document).ready(function(){
-		var detailedFeedback = new FeedbackLog("");
-		var simpleFeedback = new FeedbackLog({
-			detailed : false
-		})
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script src="../lib/feedback.js"></script>
+<script>
+$(document).ready(function(){
+	
+	// I use JQuery in this section to make it easy to show functionality
 
-		var userID = 1;
+	/*
+	*	Intantiation of all the feedback logs.. In normal cases, only one would be needed.
+	* 	Since this is an example page, I need to instantiate all of them. 
+	*/
 
-		// ==============================
-		// Standard Dialogs
-		$("#detailed_feed").click(function(){
+	// The default settings are detailed, and bottom-right, but I have included them to make it explicit
+	var detailedBottomRight = new FeedbackLog({
+		detailed : true,
+		placement: "bottom-right"
+	});
 
-			var row = document.createElement("tr");
-			
-			var id = document.createElement("td"); 
-			var date = document.createElement("td");
-			var rating = document.createElement("td"); 
-			var description = document.createElement("td");
+	var simpleBottomRight = new FeedbackLog({
+		detailed : false,
+		placement: "bottom-right"
+	});
 
-			id.innerHTML = "" + userID++;
-			date.innerHTML = "" + new Date();
+	// Notice the order of the settings does not matter, only correct spelling is necessary
+	var detailedBottomLeft = new FeedbackLog({
+		placement : "bottom-left",
+		detailed : true
+	});
+
+	var simpleBottomLeft = new FeedbackLog({
+		placement : "bottom-left",
+		detailed : true
+	});
+
+	var detailedLeft = new FeedbackLog({
+		placement : "left",
+		detailed : true
+	});
+
+	var simpleLeft = new FeedbackLog({
+		placement : "left",
+		detailed : false
+	});
+
+	var detailedRight = new FeedbackLog({
+		placement : "right",
+		detailed : true
+	});
+
+	var simpleRight = new FeedbackLog({
+		placement : "right",
+		detailed : false
+	});
+
+	var userID = 1;
+
+	/*
+	* 	Simple method called by all the simple feedback logs
+	* 	Its purpose is just to show the functionality of the dialog boxes	
+	*/
+
+	var append = function(opinion){
+		var row = document.createElement("tr");
+
+		var id = document.createElement("td"); 
+		var date = document.createElement("td");
+		var rating = document.createElement("td"); 
+		var description = document.createElement("td");
+		
+		id.innerHTML 		= "" + userID++;
+		date.innerHTML 		= "" + new Date();
+		rating.innerHTML 	= opinion;
+
+		row.appendChild(id);
+		row.appendChild(date);
+		row.appendChild(rating);
+		row.appendChild(description);
+		var base = document.getElementById('tbody');
+		base.appendChild(row);
+	}
 
 
 
-			detailedFeedback.show("How do you like this functionality?", function (e,str) {
-				
-				if(e){
-					if (str){
-						description.innerHTML = str;
-					} else if ("opinion" in e) {
-						switch(e.opinion) {
-							case 1:
-								rating.innerHTML = 1;
-								break;
-							case 0:
-								rating.innerHTML = 0;
-								break;
-							case -1:
-								rating.innerHTML = -1;
-								break;
-							default:
-								rating.innerHTML = "";
-								break;
-						}
-					}
-				} else {
-					description.innerHTML = "";
-				}
-
-			});
-
-			row.appendChild(id);
-			row.appendChild(date);
-			row.appendChild(rating);
-			row.appendChild(description);
-			var base = document.getElementById('tbody');
-			base.appendChild(row);
-			
-
-			return false;
-		})
+	/*
+	*  All the commands for the simple feedback.. This is just to show their functionality.. You can add any method you like
+	*/
 
 		$("#simple_feed").click(function(){
 
-			var row = document.createElement("tr");
+		var rating;
+
+		simpleBottomRight.show("How do you like this functionality?", function (e,str) {
+			append(e.opinion);
+		});
+
+		return false;
+	})
+	$("#simpleBottomRight").click(function(){
+
+		var rating;
+
+		simpleFeedback.show("How do you like this functionality?", function (e,str) {
+			append(e.opinion);
+		});
+
+		return false;
+	})
+
+	$("#simpleBottomLeft").click(function(){
+
+		detailedBottomLeft.show("How do you like this functionality?", function (e, str) {
+			append(e.opinion);
+		});
+
+		return false;
+	})
+
+	$("#simpleLeft").click(function(){
+
+		simpleLeft.show("How do you like this functionality?", function (e, str) {
+			append(e.opinion);
+		});
+
+		return false;
+	})
+
+	$("#simpleRight").click(function(){
+
+		simpleRight.show("How do you like this functionality?", function (e, str) {
+			append(e.opinion);
+		});
+
+		return false;
+	})
+
+	/*
+ 	*	All the commands for the detailed feedback. 
+ 	* 	Notice they are just doing the same as the append method. 
+ 	* 	However, since the method given is called twice, I cannot simply delegate the method to append.
+	*/
+
+	$("#detailedBottomRight").click(function(){
+
+		var row = document.createElement("tr");
+		
+		var id = document.createElement("td"); 
+		var date = document.createElement("td");
+		var rating = document.createElement("td"); 
+		var description = document.createElement("td");
+
+		id.innerHTML = "" + userID++;
+		date.innerHTML = "" + new Date();
+
+
+
+		detailedBottomRight.show("How do you like this functionality?", function (e,str) {
 			
-			var id = document.createElement("td"); 
-			var date = document.createElement("td");
-			var rating = document.createElement("td"); 
-			var description = document.createElement("td");
-
-			id.innerHTML = "" + userID++;
-			date.innerHTML = "" + new Date();
-
-			simpleFeedback.show("How do you like this functionality?", function (e,str) {
-
-				switch(e.opinion) {
-					case 1:
-						rating.innerHTML = 1;
-						break;
-					case 0:
-						rating.innerHTML = 0;
-						break;
-					case -1:
-						rating.innerHTML = -1;
-						break;
-					default:
-						rating.innerHTML = "";
-						break;
+			if(e){
+				if (str){
+					description.innerHTML = str;
+				} else if ("opinion" in e) {
+					switch(e.opinion) {
+						case 1:
+							rating.innerHTML = 1;
+							break;
+						case 0:
+							rating.innerHTML = 0;
+							break;
+						case -1:
+							rating.innerHTML = -1;
+							break;
+						default:
+							rating.innerHTML = "";
+							break;
+					}
 				}
-			});
+			} else {
+				description.innerHTML = "";
+			}
 
-			row.appendChild(id);
-			row.appendChild(date);
-			row.appendChild(rating);
-			row.appendChild(description);
-			var base = document.getElementById('tbody');
-			base.appendChild(row);
+		});
 
-			return false;
-		})
+		row.appendChild(id);
+		row.appendChild(date);
+		row.appendChild(rating);
+		row.appendChild(description);
+		var base = document.getElementById('tbody');
+		base.appendChild(row);
+		
 
-	});
-	</script>
+		return false;
+	})
+	
+	$("#detailedBottomRight").click(function(){
+
+		var row = document.createElement("tr");
+		
+		var id = document.createElement("td"); 
+		var date = document.createElement("td");
+		var rating = document.createElement("td"); 
+		var description = document.createElement("td");
+
+		id.innerHTML = "" + userID++;
+		date.innerHTML = "" + new Date();
+
+
+
+		detailedBottomRight.show("How do you like this functionality?", function (e,str) {
+			
+			if(e){
+				if (str){
+					description.innerHTML = str;
+				} else if ("opinion" in e) {
+					switch(e.opinion) {
+						case 1:
+							rating.innerHTML = 1;
+							break;
+						case 0:
+							rating.innerHTML = 0;
+							break;
+						case -1:
+							rating.innerHTML = -1;
+							break;
+						default:
+							rating.innerHTML = "";
+							break;
+					}
+				}
+			} else {
+				description.innerHTML = "";
+			}
+
+		});
+
+		row.appendChild(id);
+		row.appendChild(date);
+		row.appendChild(rating);
+		row.appendChild(description);
+		var base = document.getElementById('tbody');
+		base.appendChild(row);
+		
+
+		return false;
+	})
+	
+	$("#detailedBottomLeft").click(function(){
+
+		var row = document.createElement("tr");
+		
+		var id = document.createElement("td"); 
+		var date = document.createElement("td");
+		var rating = document.createElement("td"); 
+		var description = document.createElement("td");
+
+		id.innerHTML = "" + userID++;
+		date.innerHTML = "" + new Date();
+
+
+
+		detailedBottomLeft.show("How do you like this functionality?", function (e,str) {
+			
+			if(e){
+				if (str){
+					description.innerHTML = str;
+				} else if ("opinion" in e) {
+					switch(e.opinion) {
+						case 1:
+							rating.innerHTML = 1;
+							break;
+						case 0:
+							rating.innerHTML = 0;
+							break;
+						case -1:
+							rating.innerHTML = -1;
+							break;
+						default:
+							rating.innerHTML = "";
+							break;
+					}
+				}
+			} else {
+				description.innerHTML = "";
+			}
+
+		});
+
+		row.appendChild(id);
+		row.appendChild(date);
+		row.appendChild(rating);
+		row.appendChild(description);
+		var base = document.getElementById('tbody');
+		base.appendChild(row);
+		
+
+		return false;
+	})
+	
+	$("#detailedRight").click(function(){
+
+		var row = document.createElement("tr");
+		
+		var id = document.createElement("td"); 
+		var date = document.createElement("td");
+		var rating = document.createElement("td"); 
+		var description = document.createElement("td");
+
+		id.innerHTML = "" + userID++;
+		date.innerHTML = "" + new Date();
+
+
+
+		detailedRight.show("How do you like this functionality?", function (e,str) {
+			
+			if(e){
+				if (str){
+					description.innerHTML = str;
+				} else if ("opinion" in e) {
+					switch(e.opinion) {
+						case 1:
+							rating.innerHTML = 1;
+							break;
+						case 0:
+							rating.innerHTML = 0;
+							break;
+						case -1:
+							rating.innerHTML = -1;
+							break;
+						default:
+							rating.innerHTML = "";
+							break;
+					}
+				}
+			} else {
+				description.innerHTML = "";
+			}
+
+		});
+
+		row.appendChild(id);
+		row.appendChild(date);
+		row.appendChild(rating);
+		row.appendChild(description);
+		var base = document.getElementById('tbody');
+		base.appendChild(row);
+		
+
+		return false;
+	})
+	
+	$("#detailedLeft").click(function(){
+
+		var row = document.createElement("tr");
+		
+		var id = document.createElement("td"); 
+		var date = document.createElement("td");
+		var rating = document.createElement("td"); 
+		var description = document.createElement("td");
+
+		id.innerHTML = "" + userID++;
+		date.innerHTML = "" + new Date();
+
+
+
+		detailedLeft.show("How do you like this functionality?", function (e,str) {
+			
+			if(e){
+				if (str){
+					description.innerHTML = str;
+				} else if ("opinion" in e) {
+					switch(e.opinion) {
+						case 1:
+							rating.innerHTML = 1;
+							break;
+						case 0:
+							rating.innerHTML = 0;
+							break;
+						case -1:
+							rating.innerHTML = -1;
+							break;
+						default:
+							rating.innerHTML = "";
+							break;
+					}
+				}
+			} else {
+				description.innerHTML = "";
+			}
+
+		});
+
+		row.appendChild(id);
+		row.appendChild(date);
+		row.appendChild(rating);
+		row.appendChild(description);
+		var base = document.getElementById('tbody');
+		base.appendChild(row);
+		
+
+		return false;
+	})
+
+});
+</script>
 
 </body>
 </html>
