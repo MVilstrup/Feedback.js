@@ -43,7 +43,7 @@
 				</tr>
 			</thead>
 			<tbody id="tbody">
-				
+
 			</tbody>
 		</table>
 
@@ -83,52 +83,52 @@
 <script src="../lib/feedback.js"></script>
 <script>
 $(document).ready(function(){
-	
+
 	// I use JQuery in this section to make it easy to show functionality
 
 	/*
 	*	Intantiation of all the feedback logs.. In normal cases, only one would be needed.
-	* 	Since this is an example page, I need to instantiate all of them. 
+	* 	Since this is an example page, I need to instantiate all of them.
 	*/
 
 	// The default settings are detailed, and bottom-right, but I have included them to make it explicit
-	var detailedBottomRight = new FeedbackLog({
+	var detailedBottomRight = new FeedbackFeeling({
 		detailed : true,
 		placement: "bottom-right"
 	});
 
-	var simpleBottomRight = new FeedbackLog({
+	var simpleBottomRight = new FeedbackFeeling({
 		detailed : false,
 		placement: "bottom-right"
 	});
 
 	// Notice the order of the settings does not matter, only correct spelling is necessary
-	var detailedBottomLeft = new FeedbackLog({
+	var detailedBottomLeft = new FeedbackFeeling({
 		placement : "bottom-left",
 		detailed : true
 	});
 
-	var simpleBottomLeft = new FeedbackLog({
+	var simpleBottomLeft = new FeedbackFeeling({
 		placement : "bottom-left",
 		detailed : true
 	});
 
-	var detailedLeft = new FeedbackLog({
+	var detailedLeft = new FeedbackFeeling({
 		placement : "left",
 		detailed : true
 	});
 
-	var simpleLeft = new FeedbackLog({
+	var simpleLeft = new FeedbackFeeling({
 		placement : "left",
 		detailed : false
 	});
 
-	var detailedRight = new FeedbackLog({
+	var detailedRight = new FeedbackFeeling({
 		placement : "right",
 		detailed : true
 	});
 
-	var simpleRight = new FeedbackLog({
+	var simpleRight = new FeedbackFeeling({
 		placement : "right",
 		detailed : false
 	});
@@ -137,17 +137,17 @@ $(document).ready(function(){
 
 	/*
 	* 	Simple method called by all the simple feedback logs
-	* 	Its purpose is just to show the functionality of the dialog boxes	
+	* 	Its purpose is just to show the functionality of the dialog boxes
 	*/
 
 	var append = function(opinion){
 		var row = document.createElement("tr");
 
-		var id = document.createElement("td"); 
+		var id = document.createElement("td");
 		var date = document.createElement("td");
-		var rating = document.createElement("td"); 
+		var rating = document.createElement("td");
 		var description = document.createElement("td");
-		
+
 		id.innerHTML 		= "" + userID++;
 		date.innerHTML 		= "" + new Date();
 		rating.innerHTML 	= opinion;
@@ -205,18 +205,18 @@ $(document).ready(function(){
 	})
 
 	/*
- 	*	All the commands for the detailed feedback. 
- 	* 	Notice they are just doing the same as the append method. 
+ 	*	All the commands for the detailed feedback.
+ 	* 	Notice they are just doing the same as the append method.
  	* 	However, since the method given is called twice, I cannot simply delegate the method to append.
 	*/
 
 	$("#detailedBottomRight").click(function(){
 
 		var row = document.createElement("tr");
-		
-		var id = document.createElement("td"); 
+
+		var id = document.createElement("td");
 		var date = document.createElement("td");
-		var rating = document.createElement("td"); 
+		var rating = document.createElement("td");
 		var description = document.createElement("td");
 
 		id.innerHTML = "" + userID++;
@@ -225,7 +225,7 @@ $(document).ready(function(){
 
 
 		detailedBottomRight.show("How do you like this functionality?", function (e,str) {
-			
+
 			if(e){
 				if (str){
 					description.innerHTML = str;
@@ -244,18 +244,18 @@ $(document).ready(function(){
 		row.appendChild(description);
 		var base = document.getElementById('tbody');
 		base.appendChild(row);
-		
+
 
 		return false;
 	})
-	
+
 	$("#detailedBottomLeft").click(function(){
 
 		var row = document.createElement("tr");
-		
-		var id = document.createElement("td"); 
+
+		var id = document.createElement("td");
 		var date = document.createElement("td");
-		var rating = document.createElement("td"); 
+		var rating = document.createElement("td");
 		var description = document.createElement("td");
 
 		id.innerHTML = "" + userID++;
@@ -264,7 +264,7 @@ $(document).ready(function(){
 
 
 		detailedBottomLeft.show("How do you like this functionality?", function (e,str) {
-			
+
 			if(e){
 				if (str){
 					description.innerHTML = str;
@@ -283,18 +283,18 @@ $(document).ready(function(){
 		row.appendChild(description);
 		var base = document.getElementById('tbody');
 		base.appendChild(row);
-		
+
 
 		return false;
 	})
-	
+
 	$("#detailedRight").click(function(){
 
 		var row = document.createElement("tr");
-		
-		var id = document.createElement("td"); 
+
+		var id = document.createElement("td");
 		var date = document.createElement("td");
-		var rating = document.createElement("td"); 
+		var rating = document.createElement("td");
 		var description = document.createElement("td");
 
 		id.innerHTML = "" + userID++;
@@ -303,7 +303,7 @@ $(document).ready(function(){
 
 
 		detailedRight.show("How do you like this functionality?", function (e,str) {
-			
+
 			if(e){
 				if (str){
 					description.innerHTML = str;
@@ -322,18 +322,18 @@ $(document).ready(function(){
 		row.appendChild(description);
 		var base = document.getElementById('tbody');
 		base.appendChild(row);
-		
+
 
 		return false;
 	})
-	
+
 	$("#detailedLeft").click(function(){
 
 		var row = document.createElement("tr");
-		
-		var id = document.createElement("td"); 
+
+		var id = document.createElement("td");
 		var date = document.createElement("td");
-		var rating = document.createElement("td"); 
+		var rating = document.createElement("td");
 		var description = document.createElement("td");
 
 		id.innerHTML = "" + userID++;
@@ -342,7 +342,7 @@ $(document).ready(function(){
 
 
 		detailedLeft.show("How do you like this functionality?", function (e,str) {
-			
+
 			if(e){
 				if (str){
 					description.innerHTML = str;
@@ -361,7 +361,7 @@ $(document).ready(function(){
 		row.appendChild(description);
 		var base = document.getElementById('tbody');
 		base.appendChild(row);
-		
+
 
 		return false;
 	})
